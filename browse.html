@@ -15,7 +15,7 @@
             background: rgba(60, 60, 67, 0.15);
         }
 
-        .card-transparent{
+        .card-transparent {
             background: transparent;
             border: 1px solid rgb(0 0 0 / 0%);
         }
@@ -56,7 +56,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item">
                             <a class="nav-link" href="./form-elements.html">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
@@ -117,68 +117,373 @@
         </aside>
         <div class="page-wrapper">
             <div class="container-xl">
-                <div class="page-header d-print-none">
-                    <div class="row g-2 align-items-center">
-                        <div class="col">
-                            <h1 class="page-title">
-                                Browse
-                            </h1>
-                        </div>
-                        <!-- Page title actions -->
-                        <div class="col-12 col-md-auto ms-auto d-print-none">
-                            <div class="btn-list">
-                                <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                                    data-bs-target="#modal-report">
-                                    Sign-in
-                                </a>
+                <header class="navbar navbar-expand-md navbar-transparent d-print-none">
+                    <div class="container-xl">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbar-menu">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                        </h1>
+                        <div class="navbar-nav flex-row order-md-last">
+                            <div class="nav-item">
+                                <div class="btn-list">
+                                    <a href="#" class="btn btn-primary d-none d-sm-inline-block">
+                                        Sign-in
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <hr>
+                    </div>
+                </header>
+
+
+                <div id="browse_title">
+                    <div class="page-header d-print-none">
+                        <div class="row g-2 align-items-center">
+                            <div class="col">
+                                <h1 class="page-title" style="font-size: 34px; font-weight: 700;">
+                                    Browse
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 0.1rem 0 1rem 0;">
+                </div>
+                <div id="new_music_big">
+                    <div class="row row-cards">
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="text-transform: uppercase; margin-bottom: 0;">Ciao
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="text-transform: uppercase; margin-bottom: 0;">Ciao
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="text-transform: uppercase; margin-bottom: 0;">Ciao
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row row-cards">
-                    <div class="col-4">
-                        <div class="card card-sm card-transparent">
-                            <a href="#" class="d-block"><img src="https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp" class="card-img-top"></a>
-                            <div class="card-body">
+                <div id="new_music">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            New music
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
-                                    <div>
-                                        <div>Paweł Kuna</div>
-                                        <div class="text-muted">3 days ago</div>
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-
-                    </div>
-                    <div class="col-4">
-
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row row-cards">
-                        <div class="col-4">
-                            <div class="card card-sm card-transparent">
-                                <a href="#" class="d-block"><img src="https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp" class="card-img-top"></a>
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <div>Paweł Kuna</div>
-                                            <div class="text-muted">3 days ago</div>
-                                        </div>
+                <div id="new_music">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Hip-hop
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-    
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-4">
-    
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div id="video">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Drake new tour
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-12">
+                            <div style="text-align:center;">
+                                <iframe width="1000" height="400" src="https://www.youtube.com/embed/CgQwNEzpHeE?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&loop=1&autoplay=1" allow="autoplay" frameborder="0"> </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer footer-transparent d-print-none">
+                    <div class="container-xl">
+                        <div class="row text-center align-items-center flex-row-reverse">
+                            <div class="col-lg-auto ms-lg-auto">
+                                <ul class="list-inline list-inline-dots mb-0">
+                                    <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                                <ul class="list-inline list-inline-dots mb-0">
+                                    <li class="list-inline-item">
+                                        Copyright © 2022 . 
+                                        Arici / Boniotti / Samb / Brembati . 
+                                        All rights reserved
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
     </div>
