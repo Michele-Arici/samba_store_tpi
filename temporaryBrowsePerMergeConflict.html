@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Samba Store</title>
+    <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="sambaAuth.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <style>
+        .navbar-gray {
+            background: rgba(60, 60, 67, 0.03);
+            color: rgba(70, 70, 70, 0.7);
+        }
+
+        .active {
+            background: rgba(60, 60, 67, 0.15);
+        }
+
+        .card-transparent {
+            background: transparent;
+            border: 1px solid rgb(0 0 0 / 0%);
+        }
+    </style>
+</head>
+
+<body class="layout-fluid theme-light">
+    <div class="page">
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <a href=".">
+                        <h2>Samba store</h2>
+                        <!--
+                            <img src="samba_logo.jpg" width="110" height="32" class="navbar-brand-image">
+                        -->
+                    </a>
+                </h1>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <div class="input-icon mb-3">
+                                    <input type="text" value="" class="form-control" placeholder="Search…">
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="10" cy="10" r="7"></circle>
+                                            <line x1="21" y1="21" x2="15" y2="15"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./form-elements.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <rect x="3" y="4" width="18" height="4" rx="2"></rect>
+                                        <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10"></path>
+                                        <line x1="10" y1="12" x2="14" y2="12"></line>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Your tracks
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./browse.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-box-multiple" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <rect x="7" y="3" width="14" height="14" rx="2"></rect>
+                                        <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Browse
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./form-elements.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="6" cy="19" r="2"></circle>
+                                        <circle cx="17" cy="19" r="2"></circle>
+                                        <path d="M17 17h-11v-14h-2"></path>
+                                        <path d="M6 5l14 1l-1 7h-13"></path>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Cart
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-xl">
+<<<<<<< HEAD
+                <header class="navbar navbar-expand-md navbar-transparent d-print-none">
+                    <div class="container-xl">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbar-menu">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                        </h1>
+                        <div class="navbar-nav flex-row order-md-last">
+                            <div class="nav-item">
+                                <div class="btn-list">
+                                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#signInModal">
+                                        Sign-in
+                                    </a>
+                                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#signUpModal">
+                                        Register
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SIGNUP MODAL -->
+                    <div class="modal fade" id="signUpModal" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-body border-top-wide border-primary d-flex flex-column">
+                                    <div class="container-tight py-4">
+                                      <form class="card card-md" id="signup_form">
+                                        <div class="card-body">
+                                          <h2 class="card-title text-center mb-4">Create new account</h2>
+                                          <div class="mb-3">
+                                            <label class="form-label">Email address</label>
+                                            <input type="email" id="signup_email" class="form-control" placeholder="Enter email">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Password</label>
+                                            <div class="input-group input-group-flat">
+                                              <input type="password" id="signup_password" class="form-control"  placeholder="Password"  autocomplete="off">
+                                            </div>
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-check">
+                                              <input type="checkbox" class="form-check-input"/>
+                                              <span class="form-check-label">Agree the <a
+                                                  href="tos.html" target="_blank" tabindex="-1">terms and policy</a>.</span>
+                                            </label>
+                                          </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create new account</button>
+                                        </div>
+
+                                        </div>
+                                      </form>
+                                      <div class="text-center text-muted mt-3">
+                                        Already have account? <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal">Sign in</a>
+                                      </div>
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+                    
+                    </div>
+                    <!-- SIGNUP MODAL -->
+
+
+                    <!-- SIGNIN MODAL -->
+                    <div class="modal fade" id="signInModal" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body border-top-wide border-primary d-flex flex-column">
+                                        <div class="container-tight py-4">
+                                            <form class="card card-md" id="signin_form" autocomplete="off">
+                                                <div class="card-body">
+                                                    <h2 class="card-title text-center mb-4">Login to your account</h2>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Email address</label>
+                                                        <input type="email" id="signin_email" class="form-control" placeholder="Enter email">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label">
+                                                            Password
+                                                            <span class="form-label-description">
+                                                                <a href="./forgot-password.html">I forgot password</a>
+                                                            </span>
+                                                        </label>
+                                                        <div class="input-group input-group-flat">
+                                                            <input type="password" id="signin_password" class="form-control" placeholder="Password" autocomplete="off">
+                                                            <span class="input-group-text">
+                                                                <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                        <circle cx="12" cy="12" r="2" />
+                                                                        <path
+                                                                            d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                                                                    </svg>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-check">
+                                                            <input type="checkbox" class="form-check-input" />
+                                                            <span class="form-check-label">Remember me on this device</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-footer">
+                                                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sign in</button>
+                                                    </div>
+                                                </div>
+                                    
+                                            </form>
+                                            <div class="text-center text-muted mt-3">
+                                                Don't have account yet? <a href="#" data-bs-toggle="modal" data-bs-target="#signUpModal">Sign up</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SIGNIN MODAL -->
+
+
+                </header>
+
+>>>>>>> 88a44ae7fa0d0bdd395b53f01c9df923a9ee2669
+
+
+                <div id="browse_title">
+                    <div class="page-header d-print-none">
+                        <div class="row g-2 align-items-center">
+                            <div class="col">
+                                <h1 class="page-title" style="font-size: 34px; font-weight: 700;">
+                                    Browse
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 0.1rem 0 1rem 0;">
+                </div>
+                <div id="new_music_big">
+                    <div class="row row-cards">
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">Ciao
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">CIAO
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="subheader">NEW ALBUM</div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">Ciao
+                                    </h3>
+                                    <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
+                                </div>
+                            </div>
+                            <div class="card-img-bottom img-responsive img-responsive-21x9"
+                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="new_music">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            New music
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="new_music">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Hip-hop
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>SIRIO</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="video">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Drake new tour
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-12">
+                            <div style="text-align:center;">
+                                <iframe width="1000" height="400" src="https://www.youtube.com/embed/CgQwNEzpHeE?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&loop=1&autoplay=1" allow="autoplay" frameborder="0"> </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-lg-auto ms-lg-auto">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Copyright © 2022 . 
+                                    Arici / Boniotti / Samb / Brembati . 
+                                    All rights reserved
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>
