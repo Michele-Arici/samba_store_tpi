@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Saba Store</title>
+    <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <style>
+        .navbar-gray {
+            background: rgba(60, 60, 67, 0.03);
+            color: rgba(70, 70, 70, 0.7);
+        }
+
+        .active {
+            background: rgba(60, 60, 67, 0.15);
+        }
+
+        .card-transparent {
+            background: transparent;
+            border: 1px solid rgb(0 0 0 / 0%);
+        }
+    </style>
+</head>
+
+<body class="layout-fluid theme-light">
+    <div class="page">
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <a href=".">
+                        <h2>Samba store</h2>
+                        <!--
+                            <img src="samba_logo.jpg" width="110" height="32" class="navbar-brand-image">
+                        -->
+                    </a>
+                </h1>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <div class="input-icon mb-3">
+                                    <input type="text" value="" class="form-control" placeholder="Search…">
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="10" cy="10" r="7"></circle>
+                                            <line x1="21" y1="21" x2="15" y2="15"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./form-elements.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <rect x="3" y="4" width="18" height="4" rx="2"></rect>
+                                        <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10"></path>
+                                        <line x1="10" y1="12" x2="14" y2="12"></line>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Your tracks
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./browse.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-box-multiple" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <rect x="7" y="3" width="14" height="14" rx="2"></rect>
+                                        <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Browse
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./form-elements.html">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="6" cy="19" r="2"></circle>
+                                        <circle cx="17" cy="19" r="2"></circle>
+                                        <path d="M17 17h-11v-14h-2"></path>
+                                        <path d="M6 5l14 1l-1 7h-13"></path>
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Cart
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-xl">
+                <div id="sign-up_button">
+                    <header class="navbar navbar-expand-md navbar-transparent d-print-none">
+                        <div class="container-xl">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbar-menu">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                            </h1>
+                            <div class="navbar-nav flex-row order-md-last">
+                                <div class="nav-item">
+                                    <div class="btn-list">
+                                        <a href="signin_page.html" class="btn btn-primary d-none d-sm-inline-block">
+                                            Sign-in
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+
+
+                <div id="artists">
+                    <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Artists
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2 text-center">
+                            <div class="mb-1">
+                                <a href="">
+                                    <span class="avatar avatar-xl avatar-rounded" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)"></span>
+                                </a> 
+                            </div>
+                            <div class="card-title mb-1">Travis Scott</div>
+                        </div>
+                        <div class="col-2 text-center">
+                            <div class="mb-1">
+                                <a href="">
+                                    <span class="avatar avatar-xl avatar-rounded" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)"></span>
+                                </a>
+                            </div>
+                            <div class="card-title mb-1">Travis Scott</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="albums">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Albums
+                        </h2>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>ASTROWORLD</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Travis Scott</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tracks">
+                    <hr style="margin: 2rem 0 0.2rem 0;">
+                    <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
+                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                            Tracks
+                        </h2>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
+                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    2:55
+                                </div>
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-lg-auto ms-lg-auto">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Copyright © 2022 . 
+                                    Arici / Boniotti / Samb / Brembati . 
+                                    All rights reserved
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
