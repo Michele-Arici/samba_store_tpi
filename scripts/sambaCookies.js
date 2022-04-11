@@ -1,6 +1,6 @@
 //Nelle funzioni le c davanti a name e value stanno per cookie.
 //Quindi saranno CookieName e CookieValue
-function setCookie(cname, cvalue, exdays) {
+export function setCookie(cname, cvalue, exdays) {
     let expires = "";
 
     if (exdays) {
@@ -13,19 +13,21 @@ function setCookie(cname, cvalue, exdays) {
     //creo ed assegno il cookie.
 }
 
-function getCookie(cname) {
+export function getCookie(cname) {
     let cnameEQ = cname + "="; //la variabile contiene "{cname}="
-    let ca = document.cookie.split(';');
+    let ca = document.cookie.split(';'); //ca sono tutti i cookie dell'utente
+
+    //il for gestisce i cookie uno ad uno
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         let lastEmptySpaceIndex = 0;
-
+        
         while (c.charAt(lastEmptySpaceIndex) == ' ') {
             lastEmptySpaceIndex++;
         }
 
         c = c.substring(lastEmptySpaceIndex);
-        // fino a quando il primo carattere del cookie è uno spazio riformatto la stringa dal carattere successivo (cancello gli spazi) 
+        //controllo fino a quando ci sono spazi e poi ricreo la stringa dall'ultimo spazio trovato alla fine(cancello gli spazi) 
 
         if (c.indexOf(cnameEQ) == 0) {
             return c.substring(cnameEQ.length, c.length);
@@ -33,16 +35,4 @@ function getCookie(cname) {
     }
 
     return null;
-}
-
-function checkCookie() {
-    let user = getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
-    }
 }
