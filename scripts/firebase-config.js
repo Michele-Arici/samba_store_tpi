@@ -9,13 +9,14 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCXuMZtVqccFnz_puLW7EGCxY4p-Vy2chs",
-    authDomain: "provaautenticazione-bff95.firebaseapp.com",
-    projectId: "provaautenticazione-bff95",
-    storageBucket: "provaautenticazione-bff95.appspot.com",
-    messagingSenderId: "276442008448",
-    appId: "1:276442008448:web:49738f228af1392a09cf65",
-    measurementId: "G-MX3XBL3RFM"
+    apiKey: "AIzaSyDl9SE7vbQ4MtIXUSEvmkN_7dgBUC6KU1U",
+    authDomain: "samba-store-50bf0.firebaseapp.com",
+    databaseURL: "https://samba-store-50bf0-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "samba-store-50bf0",
+    storageBucket: "samba-store-50bf0.appspot.com",
+    messagingSenderId: "615866017038",
+    appId: "1:615866017038:web:73642d6681881c342be35f",
+    measurementId: "G-ESNYSNZGTF"
 };
 
 // Initialize Firebase

@@ -5,6 +5,7 @@
     <title>Samba's Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <script type="module" src="./scripts/sambaAuth.js"></script>
     <style>
         .navbar-gray {
             background: rgba(60, 60, 67, 0.03);
@@ -56,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./form-elements.html">
+                            <a class="nav-link" href="./your_tracks.html">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
                                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -92,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./form-elements.html">
+                            <a class="nav-link" href="./cart.html">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
@@ -126,15 +127,31 @@
                         </h1>
                         <div class="navbar-nav flex-row order-md-last">
                             <div class="nav-item">
-                                <div class="btn-list">
-                                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#signInModal">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                         </svg>
-                                        Sign-in
-                                    </a>
+                                <div id="profile_button_browse">
+                                    <div class="btn-list">
+                                        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#signInModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                             </svg>
+                                            Sign-in
+                                        </a>
+                                    </div>
+                                    <!--
+                                        <div class="nav-item dropdown">
+                                            <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                                              <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                              <div class="d-none d-xl-block ps-2">
+                                                <div>Paweł Kuna</div>
+                                                <div class="mt-1 small text-muted">UI Designer</div>
+                                              </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                              <a href="#" class="dropdown-item">Logout</a>
+                                            </div>
+                                        </div>
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -590,12 +607,10 @@
                                     </label>
                                 </div>
                                 <div class="form-footer">
-                                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sign
-                                        in</button>
+                                    <button class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sign in</button>
                                 </div>
                             </div>
-
                         </form>
                         <div class="text-center text-muted mt-3">
                             Don't have account yet? <a href="#" data-bs-toggle="modal"

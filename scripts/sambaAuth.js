@@ -1,13 +1,12 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 
-import { auth } from '/firebase-config.js';
+import { auth } from '/scripts/firebase-config.js';
 
 //REGISTRAZIONE
 const signupForm = document.querySelector('#signup_form');
 
 signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     //get user info
     const email = signupForm['signup_email'].value;
     const password = signupForm['signup_password'].value;
@@ -42,6 +41,7 @@ signinForm.addEventListener('submit', (e) => {
             // Signed in 
             const user = userCredential.user;
             // ...
+            console.log("loggato");
         })
         .catch((error) => {
             const errorCode = error.code;
