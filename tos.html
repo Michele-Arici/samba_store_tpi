@@ -1,0 +1,55 @@
+
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta9
+* @link https://tabler.io
+* Copyright 2018-2022 The Tabler Authors
+* Copyright 2018-2022 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+        <title>Terms of Service</title>
+    </head>
+  <body  class=" border-top-wide border-primary d-flex flex-column">
+    <div class="page page-center">
+      <div class="container-narrow py-4">
+        <div class="text-center mb-4">
+          <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36" alt=""></a>
+        </div>
+        <div class="card card-md">
+          <div class="card-body">
+            <h3 class="card-title">Terms of service</h3>
+            <div class="markdown">
+             <p>Registrandoti accetti di venderci la tua anima</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+	src="https://browser.sentry-cdn.com/5.27.6/bundle.tracing.min.js"
+	integrity="sha384-9Z8PxByVWP+gIm/rTMPn9BWwknuJR5oJcLj+Nr9mvzk8nJVkVXgQvlLGZ9SIFEJF"
+	crossorigin="anonymous"
+></script>
+    <script>
+      Sentry.init({
+      	dsn: "https://8e4ad02f495946f888620f9fb99fd495@o484108.ingest.sentry.io/5536918",
+      	release: "tabler@1.0.0-beta9",
+      	integrations: [
+      		new Sentry.Integrations.BrowserTracing()
+      	],
+
+      	tracesSampleRate: 1.0,
+      });
+    </script>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+    <script src="./dist/js/tabler.min.js?1649271947" defer></script>
+    <script src="./dist/js/demo.min.js?1649271947" defer></script>
+  </body>
+</html>
