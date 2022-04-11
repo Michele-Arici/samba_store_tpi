@@ -1,3 +1,9 @@
-#TODO rimuovi il forgot password FATTO
-#TODO cambiare API firebase-config.js FATTO
-#TODO cambiare il path di tutti gli script originali con il formato: scripts/"x"; 11/04/2022 10:46 N
+NON FINITI:
+#TODO in browse impostare l'id del checkbox di remember me a remember_login;
+#TODO assicurarsi che in browse siano importanti: "sambaAuth.js", "firebase-config.js" e "sambaCookies.js";
+#TODO nei cookie togliere il codice "demo" e rimpiazzarlo con i token di sessione e guarda documentazione firebase per gestire le sessioni;
+
+FINITI:
+#TODO rimuovi il forgot password;
+#TODO cambiare API firebase-config.js;
+#TODO cambiare il path di tutti gli script originali con il formato: scripts/"x";
