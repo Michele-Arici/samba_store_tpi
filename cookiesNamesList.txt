@@ -1,3 +1,6 @@
 Login {email}: user_email
 Login {password}: user_password
 Login {Session_Token}: session_token
+
+
+TOS {tos_agreement}: tos_agreement

@@ -4,18 +4,21 @@
 <head>
     <title>Samba's Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <script type="module" src="./scripts/sambaCookies.js"></script>
     <script type="module" src="./scripts/sambaAuth.js"></script>
+    <script type="module" src="./scripts/firebase-config.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
     <style>
         .navbar-gray {
             background: rgba(60, 60, 67, 0.03);
             color: rgba(70, 70, 70, 0.7);
         }
-
+        
         .active {
             background: rgba(60, 60, 67, 0.15);
         }
-
+        
         .card-transparent {
             background: transparent;
             border: 1px solid rgb(0 0 0 / 0%);
@@ -119,8 +122,7 @@
             <div class="container-xl">
                 <header class="navbar navbar-expand-md navbar-transparent d-print-none">
                     <div class="container-xl">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbar-menu">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
@@ -134,8 +136,7 @@
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <circle cx="12" cy="7" r="4"></circle>
                                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                             </svg>
-                                            Sign-in
+                                             </svg> Sign-in
                                         </a>
                                     </div>
                                     <!--
@@ -181,8 +182,7 @@
                                     <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive img-responsive-21x9"
-                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
                             </div>
                         </div>
                         <div class="col-4">
@@ -194,8 +194,7 @@
                                     <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive img-responsive-21x9"
-                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
                             </div>
                         </div>
                         <div class="col-4">
@@ -207,8 +206,7 @@
                                     <div class="text-muted mb-2"><strong>Travis Scott</strong></div>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive img-responsive-21x9"
-                                style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
+                            <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)">
                             </div>
                         </div>
                     </div>
@@ -223,9 +221,7 @@
                     <div class="row row-cards">
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -236,9 +232,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -249,9 +243,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -262,9 +254,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -275,9 +265,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -288,9 +276,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -301,9 +287,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -314,9 +298,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -327,9 +309,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -340,9 +320,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -353,9 +331,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -366,9 +342,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -389,9 +363,7 @@
                     <div class="row row-cards">
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -402,9 +374,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -415,9 +385,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -428,9 +396,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -441,9 +407,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -454,9 +418,7 @@
                         </div>
                         <div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg"
-                                        class="card-img-top"></a>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>SIRIO</strong></div>
@@ -477,9 +439,7 @@
                     <div class="row row-cards">
                         <div class="col-12">
                             <div style="text-align:center;">
-                                <iframe width="1000" height="400"
-                                    src="https://www.youtube.com/embed/CgQwNEzpHeE?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&loop=1&autoplay=1"
-                                    allow="autoplay" frameborder="0"> </iframe>
+                                <iframe width="1000" height="400" src="https://www.youtube.com/embed/CgQwNEzpHeE?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&loop=1&autoplay=1" allow="autoplay" frameborder="0"> </iframe>
                             </div>
                         </div>
                     </div>
@@ -492,16 +452,13 @@
                     <div class="row text-center align-items-center flex-row-reverse">
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi"
-                                        target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
-                                    Copyright © 2022 .
-                                    Arici / Boniotti / Samb / Brembati .
-                                    All rights reserved
+                                    Copyright © 2022 . Arici / Boniotti / Samb / Brembati . All rights reserved
                                 </li>
                             </ul>
                         </div>
@@ -521,19 +478,17 @@
                                 <h2 class="card-title text-center mb-4">Create new account</h2>
                                 <div class="mb-3">
                                     <label class="form-label">Email address</label>
-                                    <input type="email" id="signup_email" class="form-control"
-                                        placeholder="Enter email">
+                                    <input type="email" id="signup_email" class="form-control" placeholder="Enter email">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
                                     <div class="input-group input-group-flat">
-                                        <input type="password" id="signup_password" class="form-control"
-                                            placeholder="Password" autocomplete="off">
+                                        <input type="password" id="signup_password" class="form-control" placeholder="Password" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-check">
-                                        <input type="checkbox" class="form-check-input" />
+                                        <input type="checkbox" class="form-check-input" id="tos_agreement" />
                                         <span class="form-check-label">Agree the <a href="tos.html" target="_blank"
                                                 tabindex="-1">terms and policy</a>.</span>
                                     </label>
@@ -570,8 +525,7 @@
                                 <h2 class="card-title text-center mb-4">Login to your account</h2>
                                 <div class="mb-3">
                                     <label class="form-label">Email address</label>
-                                    <input type="email" id="signin_email" class="form-control"
-                                        placeholder="Enter email">
+                                    <input type="email" id="signin_email" class="form-control" placeholder="Enter email">
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">
@@ -581,8 +535,7 @@
                                         </span>
                                     </label>
                                     <div class="input-group input-group-flat">
-                                        <input type="password" id="signin_password" class="form-control"
-                                            placeholder="Password" autocomplete="off">
+                                        <input type="password" id="signin_password" class="form-control" placeholder="Password" autocomplete="off">
                                         <span class="input-group-text">
                                             <a href="#" class="link-secondary" title="Show password"
                                                 data-bs-toggle="tooltip">
@@ -602,19 +555,18 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-check">
-                                        <input type="checkbox" class="form-check-input" />
+                                        <input type="checkbox" class="form-check-input" id="remember_login" />
                                         <span class="form-check-label">Remember me on this device</span>
                                     </label>
                                 </div>
-                                <div class="form-footer">
+                                <div class="modal-footer">
                                     <button class="btn me-auto" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sign in</button>
                                 </div>
                             </div>
                         </form>
                         <div class="text-center text-muted mt-3">
-                            Don't have account yet? <a href="#" data-bs-toggle="modal"
-                                data-bs-target="#signUpModal">Sign up</a>
+                            Don't have account yet? <a href="#" data-bs-toggle="modal" data-bs-target="#signUpModal">Sign up</a>
                         </div>
                     </div>
                 </div>
