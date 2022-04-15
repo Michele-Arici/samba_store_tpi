@@ -20,9 +20,13 @@
             border: 1px solid rgb(0 0 0 / 0%);
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
 <body class="layout-fluid theme-light">
+    
     <div class="page">
         <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
             <div class="container-fluid">
@@ -42,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link">
                                 <div class="input-icon mb-3">
-                                    <input type="text" value="" class="form-control" placeholder="Search…">
+                                    <input type="text" id="search_bar" value="" class="form-control" placeholder="Search…">
                                     <span class="input-icon-addon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -138,170 +142,10 @@
                     </header>
                 </div>
 
-
-                <div id="artists">
-                    <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
-                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                            Artists
-                        </h2>
-                    </div>
-                    <div class="row row-cards">
-                        <div class="col-2 text-center">
-                            <div class="mb-1">
-                                <a href="">
-                                    <span class="avatar avatar-xl avatar-rounded" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)"></span>
-                                </a> 
-                            </div>
-                            <div class="card-title mb-1">Travis Scott</div>
-                        </div>
-                        <div class="col-2 text-center">
-                            <div class="mb-1">
-                                <a href="">
-                                    <span class="avatar avatar-xl avatar-rounded" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Features122/v4/c4/68/0c/c4680cf9-dd7c-bb5b-70b5-269792105df5/6fad11d0-ae30-4c97-a289-14e7dc8f8da2.png/530x304sr.webp)"></span>
-                                </a>
-                            </div>
-                            <div class="card-title mb-1">Travis Scott</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="albums">
-                    <hr style="margin: 2rem 0 0.2rem 0;">
-                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
-                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                            Albums
-                        </h2>
-                    </div>
-                    <div class="row row-cards">
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp"
-                                        class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>ASTROWORLD</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Travis Scott</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tracks">
-                    <hr style="margin: 2rem 0 0.2rem 0;">
-                    <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
-                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                            Tracks
-                        </h2>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                  <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                  <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                  <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    2:55
-                                </div>
-                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>
-                        
-                    </div>
+                <div id="all_results">
+                    
+                    
+                    
                 </div>
             </div>
             <footer class="footer footer-transparent d-print-none">
@@ -309,14 +153,15 @@
                     <div class="row text-center align-items-center flex-row-reverse">
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi"
+                                        target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
-                                    Copyright © 2022 . 
-                                    Arici / Boniotti / Samb / Brembati . 
+                                    Copyright © 2022 .
+                                    Arici / Boniotti / Samb / Brembati .
                                     All rights reserved
                                 </li>
                             </ul>
@@ -326,7 +171,243 @@
             </footer>
         </div>
     </div>
+    <script>
+        function secondsToFormat(totalSeconds) {
 
+            const minutes = Math.floor(totalSeconds / 60);
+
+            const seconds = totalSeconds % 60;
+
+            function padTo2Digits(num) {
+            return num.toString().padStart(2, '0');
+            }
+
+            const result = `${minutes}:${padTo2Digits(seconds)}`;
+
+            return result;
+        }
+
+        function openTrack(id) {
+            
+        }
+    </script>
+    <script>
+        const queryString = window.location.search;
+
+        const urlParams = new URLSearchParams(queryString);
+
+        const searched = urlParams.get('searched')
+
+        console.log(searched);
+
+        if (searched != null && searched != "") {
+            const firebaseConfig = {
+                apiKey: "AIzaSyDl9SE7vbQ4MtIXUSEvmkN_7dgBUC6KU1U",
+                authDomain: "samba-store-50bf0.firebaseapp.com",
+                databaseURL:
+                    "https://samba-store-50bf0-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "samba-store-50bf0",
+                storageBucket: "samba-store-50bf0.appspot.com",
+                messagingSenderId: "615866017038",
+                appId: "1:615866017038:web:73642d6681881c342be35f",
+                measurementId: "G-ESNYSNZGTF",
+            };
+            firebase.initializeApp(firebaseConfig);
+
+            var tracksRef = firebase.database().ref("tracks/");
+            var albumsRef = firebase.database().ref("albums/");
+            var artistsRef = firebase.database().ref("artists/");
+            
+            var n_found = 0;
+            //<!--ricerca brano, artista o album-->
+            var trackResults = [];
+            tracksRef.once("value", (snap) => {
+                let tracks = snap.val();
+
+                tracks.forEach((track) => {
+                    if (track !== undefined) {
+                        var tn = track.name;
+                        if (tn.toLowerCase() == searched.toLowerCase() || tn.toLowerCase().includes(searched.toLowerCase())) {
+                            trackResults.push(track)
+                        }
+                    }
+                });
+                
+                if (trackResults.length > 0) {
+                    var track_title_div = `<div id="tracks">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Tracks
+                            </h2>
+                        </div>
+                        <div class="row g-3" id="track_row">
+    
+                        </div>
+                    </div>`;
+                    $("#all_results").append(track_title_div);
+
+                    document.getElementById('track_row').innerHTML = "";
+                    for (let i = 0; i < trackResults.length; i++) {
+                        const element = trackResults[i];
+                        var track_div = `<div class="col-3">
+                            <div class="row g-3 align-items-center">
+                                <a class="col-auto">
+                                    <span class="avatar"
+                                        style="background-image: url(${element.image})"></span>
+                                </a>
+                                <div class="col text-truncate">
+                                    <a href="" class="text-reset d-block text-truncate"
+                                        style="font-weight: 500; line-height: 1;">${element.name}</a>
+                                    <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott
+                                    </div>
+                                </div>
+                                <div class="text-muted col-auto">
+                                    ${secondsToFormat(element.duration)}
+                                </div>
+                                <hr
+                                    style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                            </div>
+                        </div>`;
+
+                        $("#track_row").append(track_div);
+                    }
+                    
+                    n_found++;
+                }
+            });
+
+
+            var albumResults = [];
+            albumsRef.once("value", (snap) => {
+                let albums = snap.val();
+
+                albums.forEach((album) => {
+                    if (album !== undefined) {
+                        var an = album.name;
+                        if (an.toLowerCase() == searched.toLowerCase() || an.toLowerCase().includes(searched.toLowerCase())) {
+                            albumResults.push(album)
+                        }
+                    }
+                });
+
+                if (albumResults.length > 0) {
+                    var album_title_div = `<div id="albums">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Albums
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="albums_row">
+                            
+                        </div>
+                    </div>`;
+                    $("#all_results").append(album_title_div);
+
+                    for (let i = 0; i < albumResults.length; i++) {
+                        const element = albumResults[i];
+                        var album_div = `<div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="${element.image}"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>${element.name}</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>Travis Scott</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+
+                        $("#albums_row").append(album_div);
+                    }
+
+                    n_found++;
+                }
+            });
+
+
+            var artistResults = [];
+            artistsRef.once("value", (snap) => {
+                let artists = snap.val();
+
+                artists.forEach((artist) => {
+                    if (artist !== artists) {
+                        var arn = artist.name;
+                        var arsn = artist.surname;
+                        if (arn.toLowerCase() == searched.toLowerCase() || arn.toLowerCase().includes(searched.toLowerCase()) || arsn.toLowerCase() == searched.toLowerCase()) {
+                            artistResults.push(artist)
+                        }
+                    }
+                });
+                
+                if (artistResults.length > 0) {
+                    var artist_title_div = `<div id="artists">
+                        <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Artists
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="artists_row">
+
+                        </div>
+                    </div>`;
+                    $("#all_results").append(artist_title_div);
+
+                    for (let i = 0; i < artistResults.length; i++) {
+                        const element = artistResults[i];
+                        var artist_div = `<div class="col-2 text-center">
+                            <div class="mb-1">
+                                <a href="">
+                                    <span class="avatar avatar-xl avatar-rounded"
+                                        style="background-image: url(${element.image})"></span>
+                                </a>
+                            </div>
+                            <div class="card-title mb-1">${element.name} ${element.surname}</div>
+                        </div>`
+
+                        $("#artists_row").append(artist_div);
+                    }
+
+                    n_found++;
+                }
+            });
+            console.log(n_found);
+            if (n_found == 0) {
+                const empty_div = `<div class="empty">
+                <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
+                </div>
+                <p class="empty-title">No results found</p>
+                <p class="empty-subtitle text-muted">
+                    Try adjusting your search or filter to find what you're looking for.
+                </p>
+                </div>`;
+                document.getElementById('all_results').innerHTML = empty_div;
+            }
+        } else {
+            const empty_div = `<div class="empty">
+            <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
+            </div>
+            <p class="empty-title">No results found</p>
+            <p class="empty-subtitle text-muted">
+                Try adjusting your search or filter to find what you're looking for.
+            </p>
+            </div>`;
+            document.getElementById('all_results').innerHTML = empty_div;
+        }
+    </script>
+    <script>
+        const btn = document.getElementById('search_bar');
+
+        btn.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                window.location.href = "./results.html?searched="+encodeURIComponent(btn.value);
+            }
+        });
+    </script>
 </body>
 
 
