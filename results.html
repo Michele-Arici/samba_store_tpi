@@ -374,19 +374,20 @@
 
                     n_found++;
                 }
+                console.log(n_found);
+                if (n_found == 0) {
+                    const empty_div = `<div class="empty">
+                    <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
+                    </div>
+                    <p class="empty-title">No results found</p>
+                    <p class="empty-subtitle text-muted">
+                        Try adjusting your search or filter to find what you're looking for.
+                    </p>
+                    </div>`;
+                    document.getElementById('all_results').innerHTML = empty_div;
+                }
             });
-            console.log(n_found);
-            if (n_found == 0) {
-                const empty_div = `<div class="empty">
-                <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
-                </div>
-                <p class="empty-title">No results found</p>
-                <p class="empty-subtitle text-muted">
-                    Try adjusting your search or filter to find what you're looking for.
-                </p>
-                </div>`;
-                document.getElementById('all_results').innerHTML = empty_div;
-            }
+            
         } else {
             const empty_div = `<div class="empty">
             <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">

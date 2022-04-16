@@ -11,75 +11,82 @@ signupForm.addEventListener('submit', (e) => {
     //get user info
     const email = signupForm['signup_email'].value;
     const password = signupForm['signup_password'].value;
-    const isTOS = signupForm['tos_agreement'].value;
 
-    if (isTOS == 'on') {
+    if (email == '') {
+        document.getElementById('email_invalid_feed').innerHTML = "Insert an email";
+    } else if (password == '') {
+        document.getElementById('pass_invalid_feed').innerHTML = "Insert a password";
+    } else if (signupForm['tos_agreement'].checked) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                console.log("registrazione ok");
+                console.log(user);
+                $('#signUpModal').modal('hide');
+                $('#signInModal').modal('show');
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
+                console.log(errorCode);
+
+                if (errorCode == 'auth/email-already-in-use') {
+                    document.getElementById('email_invalid_feed').innerHTML = "Email already in use, try sign-in";
+                    document.getElementById('pass_invalid_feed').innerHTML = "";
+                    document.getElementById('tos_invalid_feed').innerHTML = "";
+                } else if (errorCode == 'auth/weak-password') {
+                    document.getElementById('pass_invalid_feed').innerHTML = "Weak password, try a new one";
+                }
             });
     } else {
-        //#TODO sostituire il cambio di valore del tos con un alert modal
-        document.getElementById('tos_agreement').value = "E' Obbligatorio accettare le regole del TOS per continuare!";
+        document.getElementById('tos_invalid_feed').innerHTML = "You need to accept TOS in order to continue";
     }
 
 });
 
-//REGISTRAZIONE
 
-
-//LOGIN
 const signinForm = document.querySelector('#signin_form');
-
-let loginEmailCookie = getCookie("user_email");
-let loginPasswordCookie = getCookie("user_password");
-
-//se i valori dei cookie del login non sono nulli li inserisco nel form
-if (loginEmailCookie !== null) {
-
-    document.getElementById("signin_email").value = loginEmailCookie;
-
-    if (loginPasswordCookie !== null) {
-        document.getElementById("signin_password").value = loginPasswordCookie;
-    }
-
-}
-
 signinForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     //get user info
     const email = signinForm['signin_email'].value;
     const password = signinForm['signin_password'].value;
-    const rememberLogin = signinForm['remember_login'].value;
+    //const rememberLogin = signinForm['remember_login'].value;
+    
+    
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-            console.log("loggato");
+    if (email == '') {
+        document.getElementById('signin_email_invalid_feed').innerHTML = "Insert an email";
+    } else if (password == '') {
+        document.getElementById('signin_pass_invalid_feed').innerHTML = "Insert a password";
+    } else {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                console.log("loggato");
+    
+                if (document.getElementById('remember_login').checked) {
+                    setCookie("user_email", email, 365); //assegna i cookie
+                    setCookie("user_password", password, 365); //assegna i cookie
+                } else {
+                    setCookie("user_email", email, 0.24); //assegna i cookie
+                    setCookie("user_password", password, 0.24);
+                }
+                
+                location.reload();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
 
-            console.log("il valore del checkbox è " + rememberPassword)
+                if (errorCode == 'auth/wrong-password') {
+                    document.getElementById('signin_check_invalid_feed').innerHTML = "Incorrect email or password";
+                }
+            });
+    }
 
-            if (rememberLogin == "on") {
-                setCookie("user_email", email, 365); //assegna i cookie
-                setCookie("user_password", password, 365); //assegna i cookie
-            } else {
-                setCookie("user_email", email, 0.24); //assegna i cookie
-                setCookie("user_password", password, 0.24);
-            }
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
 });
 
 //LOGIN
