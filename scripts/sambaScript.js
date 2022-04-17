@@ -1,5 +1,4 @@
 import { getCookie, setCookie, eraseCookie } from './sambaCookies.js';
-import { app } from './firebase-config.js';
 
 function logout() {
     eraseCookie("user_email");
@@ -10,6 +9,18 @@ function logout() {
 
 const email = getCookie('user_email');
 
+const firebaseConfig = {
+    apiKey: "AIzaSyDl9SE7vbQ4MtIXUSEvmkN_7dgBUC6KU1U",
+    authDomain: "samba-store-50bf0.firebaseapp.com",
+    databaseURL:
+        "https://samba-store-50bf0-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "samba-store-50bf0",
+    storageBucket: "samba-store-50bf0.appspot.com",
+    messagingSenderId: "615866017038",
+    appId: "1:615866017038:web:73642d6681881c342be35f",
+    measurementId: "G-ESNYSNZGTF",
+};
+firebase.initializeApp(firebaseConfig);
 if (email != null) {
     //if you're logged in you'll see this
 
@@ -17,7 +28,7 @@ if (email != null) {
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png)"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div><strong>${user_email}</strong></div>
+                        <div><strong>${email}</strong></div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -70,9 +81,9 @@ if (email != null) {
 }
 
 
-let tracksRef = app.database().ref("tracks/");
-let albumsRef = app.database().ref("albums/");
-let artistsRef = app.database().ref("artists/");
+let tracksRef = firebase.database().ref("tracks/");
+let albumsRef = firebase.database().ref("albums/");
+let artistsRef = firebase.database().ref("artists/");
 
 
 
