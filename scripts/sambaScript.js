@@ -91,13 +91,11 @@ let artistsRef = firebase.database().ref("artists/");
 albumsRef.once("value", (snap) => {
     let albums = snap.val();
     const latest = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         let max = { release_date: "1900-01-01" };
         for (let album of albums) {
             if (album !== undefined) {
-                if (
-                    new Date(album.release_date) > new Date(max.release_date)
-                ) {
+                if (new Date(album.release_date) > new Date(max.release_date)) {
                     max = JSON.parse(JSON.stringify(album));
                 }
             }
@@ -105,43 +103,38 @@ albumsRef.once("value", (snap) => {
         albums = albums.filter((a) => a.ID_A != max.ID_A);
         latest.push(max);
     }
+    
 
-    for (let i = 0; i < latest.length; i++) {
-        const element = latest[i];
-        var new_album_div = `<div class="col-2">
-                    <div>
-                        <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                src="${element.image}"
-                                class="card-img-top"></a>
-                        <div class="d-flex align-items-center">
-                            <div style="line-height: 15px;">
-                                <div><strong>${element.name}</strong></div>
-                                <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`
-
-        $("#new_releases_row").append(new_album_div);
+    if (latest.length > 0) {
+        artistsRef.once("value", (snap) => {
+            let artists = snap.val();
+            for (let i = 0; i < latest.length; i++) {
+                const album = latest[i];
+                artists.forEach((element) => {
+                    if (element !== undefined) {
+                        if (album.ID_AR == element.ID_AR) {
+                            var t_album_div = `<div class="col-2">
+                                <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;"
+                                        src="${album.image}"
+                                        class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>${album.name}</strong></div>
+                                        <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>`
+        
+                            $("#new_releases_row").append(t_album_div);
+                        }
+                    }
+                });
+            }
+        });
     }
 });
 
-function shuffle(array) {
-    var i = array.length, j = 0, temp;
-
-    while (i--) {
-
-        j = Math.floor(Math.random() * (i + 1));
-
-        // swap randomly chosen element with current element
-        temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-
-    }
-
-    return array;
-}
 
 function secondsToFormat(totalSeconds) {
 
@@ -157,48 +150,62 @@ function secondsToFormat(totalSeconds) {
 
     return result;
 }
+
+
 let tracks = [];
 tracksRef.once("value", function (snap) {
     tracks = snap.val();
     var randList = [];
     var randList_index = [];
+    var randList_artist_index = [];
     var t;
     var index;
 
-    while (randList.length != 6) {
+    while (randList.length != 12) {
         index = Math.floor(Math.random() * tracks.length);
         t = tracks[index];
         if (t != undefined && !randList_index.includes(index)) {
             randList_index.push(index);
             randList.push(t);
+            randList_artist_index.push(t.ID_AR);
         }
     }
 
-    for (let i = 0; i < randList.length; i++) {
-        const element = randList[i];
-        var t_track_div = `<div class="col-3">
+    artistsRef.once("value", (snap) => {
+        let artists = snap.val();
+
+        artists.forEach((element) => {
+            if (element !== undefined) {
+                for (let i = 0; i < randList.length; i++) {
+                    const track = randList[i];
+
+                    if (track.ID_AR == element.ID_AR) {
+
+                        var t_track_div = `<div class="col-3">
                             <div class="row g-3 align-items-center">
                                 <a class="col-auto">
-                                    <span class="avatar"
-                                        style="background-image: url(${element.image})"></span>
+                                    <span class="avatar" style="background-image: url(${track.image})"></span>
                                 </a>
                                 <div class="col text-truncate">
-                                    <a href="" class="text-reset d-block text-truncate"
-                                        style="font-weight: 500; line-height: 1;">${element.name}</a>
-                                    <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott
-                                    </div>
+                                    <a href="./show.html?ID_A=${track.ID_A}&ID_T=${track.ID_T}" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${track.name}</a>
+                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${element.name} ${element.surname}</a>
                                 </div>
                                 <div class="text-muted col-auto">
-                                    ${secondsToFormat(element.duration)}
+                                    ${secondsToFormat(track.duration)}
                                 </div>
-                                <hr
-                                    style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
                             </div>
                         </div>`
 
-        $("#trending_row").append(t_track_div);
-    }
+                        $("#trending_row").append(t_track_div);
+                    }
+                }
+            }
+        });
+    });
+
 });
+
 
 const btn = document.getElementById('search_bar');
 

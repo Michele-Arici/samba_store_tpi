@@ -26,7 +26,7 @@
 </head>
 
 <body class="layout-fluid theme-light">
-    
+
     <div class="page">
         <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
             <div class="container-fluid">
@@ -46,7 +46,8 @@
                         <li class="nav-item">
                             <a class="nav-link">
                                 <div class="input-icon mb-3">
-                                    <input type="text" id="search_bar" value="" class="form-control" placeholder="Search…">
+                                    <input type="text" id="search_bar" value="" class="form-control"
+                                        placeholder="Search…">
                                     <span class="input-icon-addon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -143,9 +144,9 @@
                 </div>
 
                 <div id="all_results">
-                    
-                    
-                    
+
+
+
                 </div>
             </div>
             <footer class="footer footer-transparent d-print-none">
@@ -179,7 +180,7 @@
             const seconds = totalSeconds % 60;
 
             function padTo2Digits(num) {
-            return num.toString().padStart(2, '0');
+                return num.toString().padStart(2, '0');
             }
 
             const result = `${minutes}:${padTo2Digits(seconds)}`;
@@ -188,7 +189,7 @@
         }
 
         function openTrack(id) {
-            
+
         }
     </script>
     <script>
@@ -217,22 +218,30 @@
             var tracksRef = firebase.database().ref("tracks/");
             var albumsRef = firebase.database().ref("albums/");
             var artistsRef = firebase.database().ref("artists/");
-            
+
             var n_found = 0;
-            //<!--ricerca brano, artista o album-->
-            var trackResults = [];
-            tracksRef.once("value", (snap) => {
-                let tracks = snap.val();
+            
+            
+            let trackResults = [];
+            tracksRef.once("value", function (snap) {
+                tracks = snap.val();
+                var randList = [];
+                var randList_index = [];
+                var randList_artist = [];
+                var randList_artist_index = [];
+                var t;
+                var index;
 
                 tracks.forEach((track) => {
                     if (track !== undefined) {
                         var tn = track.name;
                         if (tn.toLowerCase() == searched.toLowerCase() || tn.toLowerCase().includes(searched.toLowerCase())) {
                             trackResults.push(track)
+                            randList_artist_index.push(track.ID_AR);
                         }
                     }
                 });
-                
+
                 if (trackResults.length > 0) {
                     var track_title_div = `<div id="tracks">
                         <hr style="margin: 2rem 0 0.2rem 0;">
@@ -246,33 +255,37 @@
                         </div>
                     </div>`;
                     $("#all_results").append(track_title_div);
-
-                    document.getElementById('track_row').innerHTML = "";
-                    for (let i = 0; i < trackResults.length; i++) {
-                        const element = trackResults[i];
-                        var track_div = `<div class="col-3">
-                            <div class="row g-3 align-items-center">
-                                <a class="col-auto">
-                                    <span class="avatar"
-                                        style="background-image: url(${element.image})"></span>
-                                </a>
-                                <div class="col text-truncate">
-                                    <a href="" class="text-reset d-block text-truncate"
-                                        style="font-weight: 500; line-height: 1;">${element.name}</a>
-                                    <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott
-                                    </div>
-                                </div>
-                                <div class="text-muted col-auto">
-                                    ${secondsToFormat(element.duration)}
-                                </div>
-                                <hr
-                                    style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                            </div>
-                        </div>`;
-
-                        $("#track_row").append(track_div);
-                    }
                     
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < trackResults.length; i++) {
+                                    const track = trackResults[i];
+                                    if (track.ID_AR == element.ID_AR) {
+                                        var t_track_div = `<div class="col-3">
+                                            <div class="row g-3 align-items-center">
+                                                <a class="col-auto">
+                                                    <span class="avatar" style="background-image: url(${track.image})"></span>
+                                                </a>
+                                                <div class="col text-truncate">
+                                                    <a href="./show.html?ID_A=${track.ID_A}" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${track.name}</a>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${element.name} ${element.surname}</a>
+                                                </div>
+                                                <div class="text-muted col-auto">
+                                                    ${secondsToFormat(track.duration)}
+                                                </div>
+                                                <hr style="width:90%; margin-left:5% !important; margin-right:5% !important; margin-top:10px !important; margin-bottom:10px !important;">
+                                            </div>
+                                        </div>`
+    
+                                        $("#track_row").append(t_track_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
                     n_found++;
                 }
             });
@@ -305,22 +318,37 @@
                     </div>`;
                     $("#all_results").append(album_title_div);
 
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < albumResults.length; i++) {
+                                    const album = albumResults[i];
+                                    if (album.ID_AR == element.ID_AR) {
+                                        var t_album_div = `<div class="col-2">
+                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;"
+                                                    src="${album.image}"
+                                                    class="card-img-top"></a>
+                                            <div class="d-flex align-items-center">
+                                                <div style="line-height: 15px;">
+                                                    <div><strong>${album.name}</strong></div>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>`
+    
+                                        $("#albums_row").append(t_album_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
+
                     for (let i = 0; i < albumResults.length; i++) {
                         const element = albumResults[i];
-                        var album_div = `<div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;"
-                                        src="${element.image}"
-                                        class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>${element.name}</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Travis Scott</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`
+                        var album_div = 
 
                         $("#albums_row").append(album_div);
                     }
@@ -343,7 +371,7 @@
                         }
                     }
                 });
-                
+
                 if (artistResults.length > 0) {
                     var artist_title_div = `<div id="artists">
                         <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
@@ -361,7 +389,7 @@
                         const element = artistResults[i];
                         var artist_div = `<div class="col-2 text-center">
                             <div class="mb-1">
-                                <a href="">
+                                <a href="./artist.html?ID_AR=${element.ID_AR}">
                                     <span class="avatar avatar-xl avatar-rounded"
                                         style="background-image: url(${element.image})"></span>
                                 </a>
@@ -387,7 +415,7 @@
                     document.getElementById('all_results').innerHTML = empty_div;
                 }
             });
-            
+
         } else {
             const empty_div = `<div class="empty">
             <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
@@ -403,9 +431,9 @@
     <script>
         const btn = document.getElementById('search_bar');
 
-        btn.addEventListener("keyup", function(event) {
+        btn.addEventListener("keyup", function (event) {
             if (event.key === "Enter") {
-                window.location.href = "./results.html?searched="+encodeURIComponent(btn.value);
+                window.location.href = "./results.html?searched=" + encodeURIComponent(btn.value);
             }
         });
     </script>
