@@ -21,6 +21,7 @@ const firebaseConfig = {
     measurementId: "G-ESNYSNZGTF",
 };
 firebase.initializeApp(firebaseConfig);
+
 if (email != null) {
     //if you're logged in you'll see this
 
@@ -215,3 +216,5 @@ btn.addEventListener("keyup", function (event) {
         window.location.href = "./results.html?searched=" + encodeURIComponent(btn.value);
     }
 });
+
+
