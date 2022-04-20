@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>Saba Store</title>
+    <title>Samba's Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <script type="module" src="./scripts/sambaCart.js"></script>
     <style>
         .navbar-gray {
             background: rgba(60, 60, 67, 0.03);
@@ -129,7 +130,7 @@
                                         <div class="text-muted mb-3">INSTANT DELIVER</div>
                                     </div>
                                     <div class="col-12 col-md-auto ms-auto d-print-none">
-                                        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#signInModal">
+                                        <a href="#" type="submit" class="btn btn-primary d-none d-sm-inline-block" id="buy_tracks">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-dollar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path>
@@ -144,102 +145,18 @@
                         <hr style="margin: 0.1rem 0 3rem 0;">
 
                         
-                        <div class="row" style="justify-content: center;">
-                            <div class="col-12">
-                                <div class="row align-items-center">
-                                    <a class="col-auto">
-                                      <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                    </a>
-                                    <div class="col text-truncate">
-                                      <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                      <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                    </div>
-                                    <div class="text-muted col-auto">
-                                        1.99$
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                         </svg></a>
-                                        </div>
-                                    <hr style="width:96%; margin-left:2% !important; margin-right:2% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row align-items-center">
-                                    <a class="col-auto">
-                                      <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                    </a>
-                                    <div class="col text-truncate">
-                                      <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                      <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                    </div>
-                                    <div class="text-muted col-auto">
-                                        1.99$
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                         </svg></a>
-                                        </div>
-                                    <hr style="width:96%; margin-left:2% !important; margin-right:2% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row align-items-center">
-                                    <a class="col-auto">
-                                      <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                    </a>
-                                    <div class="col text-truncate">
-                                      <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                      <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                    </div>
-                                    <div class="text-muted col-auto">
-                                        1.99$
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                         </svg></a>
-                                        </div>
-                                    <hr style="width:96%; margin-left:2% !important; margin-right:2% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row align-items-center">
-                                    <a class="col-auto">
-                                      <span class="avatar" style="background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Music125/v4/30/66/90/306690d4-2a29-402e-e406-6b319ce7731a/886447227169.jpg/270x270bb.webp)"></span>
-                                    </a>
-                                    <div class="col text-truncate">
-                                      <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">SICKO MODE</a>
-                                      <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">Travis Scott</div>
-                                    </div>
-                                    <div class="text-muted col-auto">
-                                        1.99$
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                         </svg></a>
-                                        </div>
-                                    <hr style="width:96%; margin-left:2% !important; margin-right:2% !important; margin-top:10px !important; margin-bottom:10px !important;">
-                                </div>
-                            </div>
+                        <!-- Vengono aggiunte le tracce nel carrello -->
+                        <div class="row" style="justify-content: center;" id="show_tracks">
                         </div>
+                        <!-- Vengono aggiunte le tracce nel carrello -->
+
+
                         <div class="mb-4"></div>
                         <table class="table table-vcenter card-table">
                             <tbody>
                                 <tr style="border-style: hidden; font-size: 20px; font-weight: 500;">
                                     <td colspan="4" class="strong text-end" >Subtotal</td>
-                                    <td class="text-end w-1">$59.00</td>
+                                    <td class="text-end w-1" id="subtotal"></td>
                                 </tr>
                                 <tr style="font-size: 15px; font-weight: 500;">
                                     <td colspan="4" class="strong text-end">Site fees</td>
@@ -247,7 +164,7 @@
                                 </tr>
                                 <tr style="font-size: 30px; font-weight: 700;">
                                     <td colspan="4" class="strong text-end">Total</td>
-                                    <td class="text-end w-1">$61.00</td>
+                                    <td class="text-end w-1" id="total"></td>
                                 </tr>
                             </tbody>
                         </table>
