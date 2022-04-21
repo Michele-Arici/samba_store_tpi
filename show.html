@@ -23,6 +23,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+    <script type="module" src="./scripts/sambaSignInButton.js"></script>
+    <script type="module" src="./scripts/sambaAuth.js"></script>
+    <!--
+        <script type="module" src="./scripts/firebase-config.js"></script>
+        <script type="module" src="./scripts/sambaCookies.js"></script>
+        <script type="module" src="./scripts/sambaScript.js"></script>
+    -->
 </head>
 
 <body class="layout-fluid theme-light">
@@ -95,25 +104,9 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./form-elements.html">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <circle cx="6" cy="19" r="2"></circle>
-                                        <circle cx="17" cy="19" r="2"></circle>
-                                        <path d="M17 17h-11v-14h-2"></path>
-                                        <path d="M6 5l14 1l-1 7h-13"></path>
-                                    </svg>
-                                </span>
-                                <span class="nav-link-title">
-                                    Cart
-                                </span>
-                            </a>
-                        </li>
+                        <div id="cart_li">
+
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -127,10 +120,8 @@
                             </h1>
                             <div class="navbar-nav flex-row order-md-last">
                                 <div class="nav-item">
-                                    <div class="btn-list">
-                                        <a href="signin_page.html" class="btn btn-primary d-none d-sm-inline-block">
-                                            Sign-in
-                                        </a>
+                                    <div id="profile_button_browse">
+
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +160,12 @@
             </footer>
         </div>
     </div>
-    <script>
+
+    <div id="modals_sign_div">
+
+    </div>
+
+    <script type="module">
         var id_player;
         function secondsToFormat(totalSeconds) {
 
@@ -187,7 +183,7 @@
         }
 
         function MusicPrev(id, url) {
-            
+
             if (document.getElementById('music_player') == null || id_player != id) {
                 const controller_div = `<audio autoplay id="music_player">
                     <source src="${url}" type="audio/mpeg">
@@ -215,6 +211,12 @@
             }
         }
 
+
+
+        import { getDatabase, ref, get, set, child, update, remove, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"
+        import { getCookie, setCookie, eraseCookie } from './scripts/sambaCookies.js';
+
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const searched_id = urlParams.get('ID_A');
@@ -236,12 +238,54 @@
         let tracksRef = firebase.database().ref("tracks/");
         let albumsRef = firebase.database().ref("albums/");
         let artistsRef = firebase.database().ref("artists/");
+        let customerRef = firebase.database().ref("customers/");
+        /*
+                customerRef.once("value", (snap) => {
+                    let customers = snap.val();
+                    console.log(customers);
+                    
+                    customers.forEach((element) => {
+                        if (element !== undefined) {
+                            console.log(element);
+                            if (element.email == email) {
+                                console.log("trovato");
+                                
+                                var customer_ref = "customers/" + email + "/cart/";
+                                var json = { track: id[2] };
+                                let cartRef = ref(firebase.database(), customer_ref);
+                                return push(cartRef, json).key;
+                            }
+                        }
+                    });
+                });*/
+        function AddToCart(strong_id) {
+            var id = strong_id.split('_');
 
+            const email = getCookie('user_email');
+            if (email != null) {
+                var myRef = firebase.database().ref("customers/").push().getKey();
+                console.log(myRef);
+                var key = myRef.key;
+                console.log(key);
+                var result = Object.keys(obj).map((key) => [Number(key), obj[key]]);
+
+            }
+
+        }
+
+        firebase.database().ref('customers/').on("value", function(snapshot) {
+            console.log(snapshot.val());
+            var obj = snapshot.val()
+            var result = Object.entries(obj);
+            console.log(result);
+
+        }, function(errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
 
         var album_result;
         albumsRef.once("value", (snap) => {
             let albums = snap.val();
-
             albums.forEach((album) => {
                 if (album !== undefined) {
                     if (album.ID_A == searched_id) {
@@ -340,7 +384,7 @@
                                         ${secondsToFormat(element.duration)}
                                     </td>
                                     <td class="w-1">
-                                        <a href="#" class="btn btn-outline-light w-100">${element.price}$</a>
+                                        <a href="#" id="cart_button_${element.ID_T}" class="btn btn-outline-light w-100">${element.price}$</a>
                                     </td>
                                 </tr>`;
                             } else {
@@ -358,18 +402,23 @@
                                         ${secondsToFormat(element.duration)}
                                     </td>
                                     <td class="w-1">
-                                        <a href="#" class="btn btn-outline-primary w-100">${element.price}$</a>
+                                        <a href="#" id="cart_button_${element.ID_T}" class="btn btn-outline-primary w-100">${element.price}$</a>
                                     </td>
                                 </tr>`;
                             }
 
-                            
+
 
                             $("#tbody_tracks").append(track_div);
                             var id = '#play_button_' + element.ID_T;
+                            var cart_id = '#cart_button_' + element.ID_T;
 
-                            $(id).click(function() {
+                            $(id).click(function () {
                                 MusicPrev(this.id, element.preview);
+                            });
+
+                            $(cart_id).click(function () {
+                                AddToCart(this.id);
                             });
                         }
                     }
@@ -386,13 +435,8 @@
                 document.getElementById('main_div').innerHTML = empty_div;
             }
         });
-
-
-
-
-
-
-
+    </script>
+    <script>
         const btn = document.getElementById('search_bar');
         btn.addEventListener("keyup", function (event) {
             if (event.key === "Enter") {
