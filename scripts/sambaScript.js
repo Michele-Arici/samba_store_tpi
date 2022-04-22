@@ -87,8 +87,6 @@ let albumsRef = firebase.database().ref("albums/");
 let artistsRef = firebase.database().ref("artists/");
 
 
-
-
 albumsRef.once("value", (snap) => {
     let albums = snap.val();
     const latest = [];
@@ -181,7 +179,7 @@ tracksRef.once("value", function (snap) {
                     const track = randList[i];
 
                     if (track.ID_AR == element.ID_AR) {
-
+                        
                         var t_track_div = `<div class="col-3">
                             <div class="row g-3 align-items-center">
                                 <a class="col-auto">
@@ -205,6 +203,11 @@ tracksRef.once("value", function (snap) {
         });
     });
 
+});
+
+document.getElementById('search_mood_hiphop').addEventListener("click", function (event) {
+    console.log('click');
+    
 });
 
 

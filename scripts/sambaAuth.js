@@ -131,14 +131,38 @@ if (email == null) {
                     console.log(user);
                     console.log("loggato");
 
-                    if (document.getElementById('remember_login').checked) {
-                        //(nomeCookie, valore che vuoi dare al cookie, durata cookie: 1 equivale ad 1 giorno)
-                        setCookie("user_email", email, 365);
-                        setCookie("user_password", password, 365);
-                    } else {
-                        setCookie("user_email", email, 0.24);
-                        setCookie("user_password", password, 0.24);
-                    }
+                    let user_id = "";
+                    firebase.database().ref("customers/").once("value", (snap) => {
+                        let customers = snap;
+    
+                        customers.forEach((element) => {
+                            if (element != undefined) {
+                                
+                                console.log(element.val());
+                                let customer = element.val();
+                                if (customer.email != undefined) {    
+                                    if (customer.email == email) {
+                                        user_id = element.key;
+                                        console.log(user_id);
+
+                                        if (document.getElementById('remember_login').checked) {
+                                            //(nomeCookie, valore che vuoi dare al cookie, durata cookie: 1 equivale ad 1 giorno)
+                                            setCookie("user_id", user_id, 365);
+                                            setCookie("user_email", email, 365);
+                                            setCookie("user_password", password, 365);
+                                        } else {
+                                            setCookie("user_id", user_id, 0.24);
+                                            setCookie("user_email", email, 0.24);
+                                            setCookie("user_password", password, 0.24);
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        });
+                    });
+
+                   
 
                     location.reload(); //Aggiorna la pagina
                 })
@@ -148,7 +172,7 @@ if (email == null) {
                     if (errorCode == 'auth/wrong-password' || errorCode == 'auth/user-not-found') {
                         document.getElementById('signin_check_invalid_feed').innerHTML = "Incorrect email or password";
                     }
-                    console.log("sheesh");
+                    console.log(errorCode);
                 });
         }
     });
