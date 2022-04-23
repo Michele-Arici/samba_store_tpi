@@ -156,6 +156,7 @@ if (email == null) {
                                             setCookie("user_password", password, 0.24);
                                         }
                                         
+                                        location.reload(); //Aggiorna la pagina
                                     }
                                 }
                             }
@@ -164,7 +165,6 @@ if (email == null) {
 
                    
 
-                    location.reload(); //Aggiorna la pagina
                 })
                 .catch((error) => {
                     const errorCode = error.code;
