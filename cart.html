@@ -4,6 +4,9 @@
 <head>
     <title>Samba's Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
     <script type="module" src="./scripts/sambaCart.js"></script>
     <style>
@@ -151,23 +154,11 @@
                         <!-- Vengono aggiunte le tracce nel carrello -->
 
 
+                        <!-- Viene mostrata la spesa totale se ci sta qualcosa-->
                         <div class="mb-4"></div>
-                        <table class="table table-vcenter card-table">
-                            <tbody>
-                                <tr style="border-style: hidden; font-size: 20px; font-weight: 500;">
-                                    <td colspan="4" class="strong text-end" >Subtotal</td>
-                                    <td class="text-end w-1" id="subtotal"></td>
-                                </tr>
-                                <tr style="font-size: 15px; font-weight: 500;">
-                                    <td colspan="4" class="strong text-end">Site fees</td>
-                                    <td class="text-end w-1">$2.00</td>
-                                </tr>
-                                <tr style="font-size: 30px; font-weight: 700;">
-                                    <td colspan="4" class="strong text-end">Total</td>
-                                    <td class="text-end w-1" id="total"></td>
-                                </tr>
-                            </tbody>
+                        <table class="table table-vcenter card-table" id="show_total">
                         </table>
+
                     </div>
                 </div>
             </div>
