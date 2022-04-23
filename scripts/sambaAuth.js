@@ -127,10 +127,7 @@ if (email == null) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in 
-                    const user = userCredential.user;
-                    console.log(user);
-                    console.log("loggato");
-
+                    
                     let user_id = "";
                     firebase.database().ref("customers/").once("value", (snap) => {
                         let customers = snap;
@@ -138,12 +135,10 @@ if (email == null) {
                         customers.forEach((element) => {
                             if (element != undefined) {
                                 
-                                console.log(element.val());
                                 let customer = element.val();
                                 if (customer.email != undefined) {    
                                     if (customer.email == email) {
                                         user_id = element.key;
-                                        console.log(user_id);
 
                                         if (document.getElementById('remember_login').checked) {
                                             //(nomeCookie, valore che vuoi dare al cookie, durata cookie: 1 equivale ad 1 giorno)
