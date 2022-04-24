@@ -42,11 +42,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
-                    <a href=".">
-                        <h2>Samba store</h2>
-                        <!--
-                            <img src="samba_logo.jpg" width="110" height="32" class="navbar-brand-image">
-                        -->
+                    <a href="./browse.html">
+                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;" class="navbar-brand-image">
                     </a>
                 </h1>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -428,9 +425,6 @@
         let artistsRef = firebase.database().ref("artists/");
         let customerRef = firebase.database().ref("customers/");
 
-
-
-
         function AddToCart(strong_id) {
             var id = strong_id.split('_');
 
@@ -571,16 +565,20 @@
                                 </tr>`;
                             }
 
-                            //urlPreview.push(element.preview);
                             urlPreview.set(i, element.preview)
                             urlName.set(i, element.name)
 
                             $("#tbody_tracks").append(track_div);
+
+                            
                             var id = '#play_button_' + element.ID_T;
                             var cart_id = '#cart_button_' + element.ID_T;
-
+                            
+                            if (red_track_id == element.ID_T) {
+                                location.href = id;
+                            }
+                            
                             $(id).click(function () {
-                                //MusicPrev(this.id, element.preview);
                                 SetUrl(i);
                             });
 

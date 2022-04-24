@@ -38,11 +38,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
-                    <a href=".">
-                        <h2>Samba store</h2>
-                        <!--
-                            <img src="samba_logo.jpg" width="110" height="32" class="navbar-brand-image">
-                        -->
+                    <a href="./browse.html">
+                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;" class="navbar-brand-image">
                     </a>
                 </h1>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -280,14 +277,19 @@
 
 
             var albumResults = [];
+            var genereResults = [];
             albumsRef.once("value", (snap) => {
                 let albums = snap.val();
 
                 albums.forEach((album) => {
                     if (album !== undefined) {
                         var an = album.name;
+                        var ag = album.genre;
                         if (an.toLowerCase() == searched.toLowerCase() || an.toLowerCase().includes(searched.toLowerCase())) {
                             albumResults.push(album)
+                        }
+                        if (ag.toLowerCase() == searched.toLowerCase() || ag.toLowerCase().includes(searched.toLowerCase())) {
+                            genereResults.push(album)
                         }
                     }
                 });
@@ -334,12 +336,50 @@
                         });
                     });
 
-                    for (let i = 0; i < albumResults.length; i++) {
-                        const element = albumResults[i];
-                        var album_div = 
+                    n_found++;
+                }
 
-                        $("#albums_row").append(album_div);
-                    }
+                if (genereResults.length > 0) {
+                    var album_title_div = `<div id="genere">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Genere
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="genere_row">
+                            
+                        </div>
+                    </div>`;
+                    $("#all_results").append(album_title_div);
+
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < genereResults.length; i++) {
+                                    const album = genereResults[i];
+                                    if (album.ID_AR == element.ID_AR) {
+                                        var t_album_div = `<div class="col-2">
+                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;"
+                                                    src="${album.image}"
+                                                    class="card-img-top"></a>
+                                            <div class="d-flex align-items-center">
+                                                <div style="line-height: 15px;">
+                                                    <div><strong>${album.name}</strong></div>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>`
+    
+                                        $("#genere_row").append(t_album_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
 
                     n_found++;
                 }
@@ -354,7 +394,9 @@
                     if (artist !== artists) {
                         var arn = artist.name;
                         var arsn = artist.surname;
-                        if (arn.toLowerCase() == searched.toLowerCase() || arsn.toLowerCase().includes(searched.toLowerCase()) || arn.toLowerCase().includes(searched.toLowerCase()) || arsn.toLowerCase() == searched.toLowerCase()) {
+                        var full_name = arn + " " + arsn;
+                        var full_name2 = arsn + " " + arn;
+                        if (arn.toLowerCase() == searched.toLowerCase() || arsn.toLowerCase().includes(searched.toLowerCase()) || arn.toLowerCase().includes(searched.toLowerCase()) || arsn.toLowerCase() == searched.toLowerCase() || full_name.toLowerCase() == searched.toLowerCase() || full_name2.toLowerCase() == searched.toLowerCase()) {
                             artistResults.push(artist)
                         }
                     }
@@ -390,7 +432,7 @@
 
                     n_found++;
                 }
-                console.log(n_found);
+
                 if (n_found == 0) {
                     const empty_div = `<div class="empty">
                     <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
