@@ -50,7 +50,7 @@ if (email != null) {
                     </span>
                 </a>
             </li>`;
-    document.getElementById('cart_li').innerHTML = cart;    
+    document.getElementById('cart_li').innerHTML = cart;
 } else {
     let div = `<div class="btn-list">
                 <a href="#" class="btn btn-primary d-none d-sm-inline-block"
@@ -164,6 +164,6 @@ if (email != null) {
         </div>
     </div>
     <!-- SIGNIN MODAL -->`;
-    
+
     document.getElementById('modals_sign_div').innerHTML = modals;
 }

@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <title>Saba Store</title>
+    <title>Samba's Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
+    <script type="module" src="./scripts/sambaSignInButton.js"></script>
+    <script type="module" src="./scripts/sambaCookies.js"></script>
+    <script type="module" src="./scripts/sambaAuth.js"></script>
+    <script type="module" src="./scripts/firebase-config.js"></script>
     <style>
         .navbar-gray {
             background: rgba(60, 60, 67, 0.03);
@@ -96,31 +100,14 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./cart.html">
-                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <circle cx="6" cy="19" r="2"></circle>
-                                        <circle cx="17" cy="19" r="2"></circle>
-                                        <path d="M17 17h-11v-14h-2"></path>
-                                        <path d="M6 5l14 1l-1 7h-13"></path>
-                                    </svg>
-                                </span>
-                                <span class="nav-link-title">
-                                    Cart
-                                </span>
-                            </a>
-                        </li>
+                        <div id="cart_li"></div>
                     </ul>
                 </div>
             </div>
         </aside>
         <div class="page-wrapper">
             <div class="container-xl">
+                
                 <div id="sign-up_button">
                     <header class="navbar navbar-expand-md navbar-transparent d-print-none">
                         <div class="container-xl">
@@ -132,10 +119,11 @@
                             </h1>
                             <div class="navbar-nav flex-row order-md-last">
                                 <div class="nav-item">
+                                    
                                     <div class="btn-list">
-                                        <a href="signin_page.html" class="btn btn-primary d-none d-sm-inline-block">
-                                            Sign-in
-                                        </a>
+                                        <div id="profile_button_browse"></div>
+                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -437,6 +425,9 @@
             }
         });
     </script>
+
+    <div id="modals_sign_div">
+    </div>
 </body>
 
 
