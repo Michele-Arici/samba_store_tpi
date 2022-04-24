@@ -90,7 +90,7 @@ let artistsRef = firebase.database().ref("artists/");
 albumsRef.once("value", (snap) => {
     let albums = snap.val();
     const latest = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 12; i++) {
         let max = { release_date: "1900-01-01" };
         for (let album of albums) {
             if (album !== undefined) {
@@ -206,14 +206,31 @@ tracksRef.once("value", function (snap) {
 });
 
 document.getElementById('search_mood_hiphop').addEventListener("click", function (event) {
-    console.log('click');
-    
+    window.location.href = "./results.html?searched=" + encodeURIComponent("Hip-hop");
+});
+
+document.getElementById('search_mood_pop').addEventListener("click", function (event) {
+    window.location.href = "./results.html?searched=" + encodeURIComponent("Pop");
+});
+
+document.getElementById('search_mood_house').addEventListener("click", function (event) {
+    window.location.href = "./results.html?searched=" + encodeURIComponent("House");
+});
+
+document.getElementById('search_mood_rap').addEventListener("click", function (event) {
+    window.location.href = "./results.html?searched=" + encodeURIComponent("Rap");
+});
+
+document.getElementById('search_mood_jazz').addEventListener("click", function (event) {
+    window.location.href = "./results.html?searched=" + encodeURIComponent("Jazz");
+});
+
+document.getElementById('search_mood_dance').addEventListener("click", function (event) {
+    window.location.href = "./results.html?searched=" + encodeURIComponent("Dance");
 });
 
 
 const btn = document.getElementById('search_bar');
-
-
 btn.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
         window.location.href = "./results.html?searched=" + encodeURIComponent(btn.value);
