@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./form-elements.html">
+                            <a class="nav-link" href="./your_tracks.html">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
                                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -432,10 +432,50 @@
             const user_id = getCookie('user_id');
 
             if (email != null && user_id != null) {
-                let customer_ref = "customers/" + user_id + "/cart/";
-                let json = { track: id[2] };
-                let cartRef = ref(firebase.database(), customer_ref);
-                return push(cartRef, json).key;
+                let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
+                    let items = snapshot;
+
+                    if(items.forEach((item) => {
+                        if(item.val() != "initialize"){
+                            if (item.val().track == id[2]) {
+                                return true;
+                            }
+                        }
+                    })) return true;
+                    return false;
+                });
+
+                let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
+                    let items = snapshot;
+
+                    if (items.forEach((item) => {
+                        if (item.val() != "initialize") {
+                            if (item.val().track == id[2]) {
+                                return true;
+                            }
+                        }
+                    })) return true;
+                    return false;
+                });
+
+                Promise.all([isInCart, isAlreadyBought]).then((values) => {
+                     if (values[0]) {
+                         return alert("Il brano è già presente nel carrello");
+                     }
+                     
+                     if (values[1]) {
+                         return alert("Il brano è già stato comprato");
+                     }
+                     
+                     console.log("aggiunto al carrello");
+                     
+                    let json = { track: id[2] };
+                     return firebase.database().ref("customers/" + getCookie('user_id') + "/cart/").push(json).key;
+                    
+                });
+
+                
+                
             }
 
         }

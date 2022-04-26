@@ -11,7 +11,7 @@ import { getCookie, setCookie, eraseCookie } from '/scripts/sambaCookies.js';
 const email = getCookie('user_email');
 
 if (email == null) {
-    
+
     //REGISTRAZIONE
     const signupForm = document.querySelector('#signup_form');
     function checkSignUpInvalidSyntax(email, password) {
@@ -20,11 +20,11 @@ if (email == null) {
         document.getElementById('pass_invalid_feed').innerHTML = "";
         document.getElementById('tos_invalid_feed').innerHTML = "";
         //Resettingb the innerHTML errors
-    
-    
+
+
         //Checking the syntax
         let isCorrectFormat = true;
-    
+
         if (email == '') {
             document.getElementById('email_invalid_feed').innerHTML = "Insert a valid email address.";
             isCorrectFormat = false;
@@ -39,20 +39,20 @@ if (email == null) {
         }
         return isCorrectFormat;
     }
-    
+
     function checkSignInInvalidSyntax(email, password) {
         //reset previous innerHTML messages
         document.getElementById('signin_email_invalid_feed').innerHTML = "";
         document.getElementById('signin_pass_invalid_feed').innerHTML = "";
         //reset previous innerHTML messages
-    
+
         let isCorrectFormat = true;
-    
+
         if (email == '') {
             document.getElementById('signin_email_invalid_feed').innerHTML = "Insert a valid email address.";
             isCorrectFormat = false;
         }
-    
+
         if (password == '') {
             document.getElementById('signin_pass_invalid_feed').innerHTML = "Insert a password";
             isCorrectFormat = false;
@@ -86,11 +86,11 @@ if (email == null) {
                     //QUERY PER COLLEGARE L'ACCOUNT!!
                     //addCustomer(user.uid, email, password, phone_number, city, firstName, surname);
                     //QUERY PER COLLEGARE L'ACCOUNT!!
-                    
-                    let json = {email: email, cart: {initialize: ""},image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png"}
+
+                    let json = { email: email, owned_tracks: { initialize: "" }, cart: { initialize: "" }, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png" }
                     let cartRef = ref(firebase.database(), "customers/");
                     push(cartRef, json);
-                    
+
                     //Se funziona la registrazione nascondo il modale del signup e mostro quello del signin
                     $('#signUpModal').modal('hide');
                     $('#signInModal').modal('show');
@@ -127,16 +127,16 @@ if (email == null) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in 
-                    
+
                     let user_id = "";
                     firebase.database().ref("customers/").once("value", (snap) => {
                         let customers = snap;
-    
+
                         customers.forEach((element) => {
                             if (element != undefined) {
-                                
+
                                 let customer = element.val();
-                                if (customer.email != undefined) {    
+                                if (customer.email != undefined) {
                                     if (customer.email == email) {
                                         user_id = element.key;
 
@@ -150,7 +150,7 @@ if (email == null) {
                                             setCookie("user_email", email, 0.24);
                                             setCookie("user_password", password, 0.24);
                                         }
-                                        
+
                                         location.reload(); //Aggiorna la pagina
                                     }
                                 }
@@ -158,7 +158,7 @@ if (email == null) {
                         });
                     });
 
-                   
+
 
                 })
                 .catch((error) => {

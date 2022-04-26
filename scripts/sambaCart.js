@@ -39,8 +39,6 @@ cartRef.once("value", (snap) => {
 
             if (item.key != "initialize") {
 
-                console.log(item.key);
-                console.log(item.val());
 
                 //returns a resolved promise
                 let current_track_image = firebase.database().ref("tracks/" + item.val().track + "/image").once('value').then((snapshot) => {
@@ -79,8 +77,6 @@ cartRef.once("value", (snap) => {
                     current_track_cost = values[2];
                     current_track_artist = values[3];
 
-                    console.log(values);
-
 
                     subtotal += current_track_cost;
 
@@ -97,7 +93,7 @@ cartRef.once("value", (snap) => {
                         ${current_track_cost}$
                     </div>
                     <div class="col-auto">
-                        <a href="#" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <a href="#" id="remove_${item.key}" class="btn btn-outline-danger btn-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -113,7 +109,14 @@ cartRef.once("value", (snap) => {
                     //arrotonda la variabile subtotal ad intera. viene moltiplicata *100 e divisa *100 per tenere 2 cifre decimali che andrebbero perse nel round
                     document.getElementById("subtotal").innerHTML = `\$${Math.round(subtotal * 100) / 100}`;
                     document.getElementById("total").innerHTML = `\$${Math.round(subtotal * 100) / 100 + 2}`;
-                    console.log(subtotal);
+                    let queryID = `#remove_${item.key}`;
+                    let remove = document.querySelector(queryID);
+                    console.log(queryID);
+
+                    remove.addEventListener('click', (e) => {
+                        firebase.database().ref("customers/" + getCookie('user_id') + "/cart/" + item.key).remove();
+                        window.location.reload();
+                    });
 
 
                     //#TODO aggiungere sta roba negli ordini.
@@ -125,7 +128,7 @@ cartRef.once("value", (snap) => {
 
 
     } else {
-        document.getElementById('buy_now_div').innerHTML = "";
+        document.getElementById('buy_tracks_div').innerHTML = "";
         $("#show_tracks").append(`<div class="container-tight py-4">
             <div class="empty">
                 <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg"
@@ -155,15 +158,25 @@ cartRef.once("value", (snap) => {
 });
 
 
-
-
-
-
-
-///buy things////
+// ///buy things////
 const buyTracks = document.getElementById('buy_tracks');
 
 buyTracks.addEventListener('click', (e) => {
-    //query per fare un delete del carrello dell'utente e per poi aggiungere la roba negli ordini grazie al codice del crud de brembo
+
+    let cartRef = firebase.database().ref("customers/" + getCookie('user_id') + "/cart/");
+
+    cartRef.once("value", (snap) => {
+        let items = snap;
+        items.forEach(element => {
+            if (element.key != "initialize") {
+                let json = { track: element.val()['track'] };
+                firebase.database().ref("customers/" + getCookie('user_id') + "/owned_tracks/").push(json).key;
+                firebase.database().ref("customers/" + getCookie('user_id') + "/cart/" + element.key).remove();
+            }
+        });
+
+    });
+    window.location.replace("./successful_purchase.html");
 });
+
 ///buy things////
