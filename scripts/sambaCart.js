@@ -111,7 +111,6 @@ cartRef.once("value", (snap) => {
                     document.getElementById("total").innerHTML = `\$${Math.round(subtotal * 100) / 100 + 2}`;
                     let queryID = `#remove_${item.key}`;
                     let remove = document.querySelector(queryID);
-                    console.log(queryID);
 
                     remove.addEventListener('click', (e) => {
                         firebase.database().ref("customers/" + getCookie('user_id') + "/cart/" + item.key).remove();

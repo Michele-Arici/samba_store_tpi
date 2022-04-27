@@ -174,6 +174,10 @@ if (email != null) {
                     return snapshot.val();
                 });
 
+                let current_album_id = firebase.database().ref("tracks/" + item.val().track + "/ID_A").once('value').then((snapshot) => {
+                    return snapshot.val();
+                });
+
                 let current_track_duration = firebase.database().ref("tracks/" + item.val().track + "/duration").once('value').then((snapshot) => {
                     return snapshot.val();
                 });
@@ -191,7 +195,7 @@ if (email != null) {
                 });
 
 
-                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist]).then((values) => {
+                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist, current_album_id, current_artist_id]).then((values) => {
 
                     current_track_name = values[0];
                     current_track_image = values[1];
@@ -202,8 +206,8 @@ if (email != null) {
                     } else current_track_duration = Math.floor(values[2] / 60) + ":" + current_track_seconds;
 
                     current_track_artist = values[3];
-
-
+                    current_album_id = values[4];
+                    current_artist_id = values[5];
 
                     let current_track_owned_track = `<div class="col-3">
                             <div class="row g-3 align-items-center">
@@ -211,9 +215,9 @@ if (email != null) {
                                     <span class="avatar" style="background-image: url(${current_track_image})"></span>
                                 </a>
                                 <div class="col text-truncate">
-                                    <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
-                                    <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist}
-                                    </div>
+                                    <a href="./show.html?ID_A=${current_album_id}&ID_T=${item.val()['track']}" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
+                                    <a href="./artist.html?ID_AR=${current_artist_id}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist}
+                                    </a>
                                 </div>
                                 <div class="text-muted col-auto">
                                     ${current_track_duration}
@@ -259,5 +263,3 @@ if (email != null) {
             </div>`;
     document.getElementById('sign-in_div').innerHTML = log_in;
 }
-
-

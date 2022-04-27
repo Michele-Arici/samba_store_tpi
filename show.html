@@ -43,7 +43,8 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
                     <a href="./browse.html">
-                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;" class="navbar-brand-image">
+                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;"
+                            class="navbar-brand-image">
                     </a>
                 </h1>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -432,52 +433,13 @@
             const user_id = getCookie('user_id');
 
             if (email != null && user_id != null) {
-                let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
-                    let items = snapshot;
 
-                    if(items.forEach((item) => {
-                        if(item.val() != "initialize"){
-                            if (item.val().track == id[2]) {
-                                return true;
-                            }
-                        }
-                    })) return true;
-                    return false;
-                });
 
-                let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
-                    let items = snapshot;
+                let json = { track: id[2] };
+                return firebase.database().ref("customers/" + getCookie('user_id') + "/cart/").push(json).key;
 
-                    if (items.forEach((item) => {
-                        if (item.val() != "initialize") {
-                            if (item.val().track == id[2]) {
-                                return true;
-                            }
-                        }
-                    })) return true;
-                    return false;
-                });
 
-                Promise.all([isInCart, isAlreadyBought]).then((values) => {
-                     if (values[0]) {
-                         return alert("Il brano è già presente nel carrello");
-                     }
-                     
-                     if (values[1]) {
-                         return alert("Il brano è già stato comprato");
-                     }
-                     
-                     console.log("aggiunto al carrello");
-                     
-                    let json = { track: id[2] };
-                     return firebase.database().ref("customers/" + getCookie('user_id') + "/cart/").push(json).key;
-                    
-                });
-
-                
-                
             }
-
         }
 
         var album_result;
@@ -610,14 +572,14 @@
 
                             $("#tbody_tracks").append(track_div);
 
-                            
+
                             var id = '#play_button_' + element.ID_T;
                             var cart_id = '#cart_button_' + element.ID_T;
-                            
+
                             if (red_track_id == element.ID_T) {
                                 location.href = id;
                             }
-                            
+
                             $(id).click(function () {
                                 SetUrl(i);
                             });
@@ -640,6 +602,54 @@
                 document.getElementById('main_div').innerHTML = empty_div;
             }
         });
+
+        function isAlreadyAdded(id) {
+            let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
+                let items = snapshot;
+
+                if (items.forEach((item) => {
+                    if (item.val() != "initialize") {
+                        if (item.val().track == id) {
+                            return true;
+                        }
+                    }
+                })) return true;
+                return false;
+            });
+
+            Promise.all([isInCart]).then((values) => {
+                if (values[0]) {
+                    return true;
+                }
+                return false;
+            });
+
+
+        }
+
+        function isAlreadyBought(id) {
+
+            let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
+                let items = snapshot;
+
+                if (items.forEach((item) => {
+                    if (item.val() != "initialize") {
+                        if (item.val().track == id) {
+                            return true;
+                        }
+                    }
+                })) return true;
+                return false;
+            });
+
+            Promise.all([isAlreadyBought]).then((values) => {
+                if (values[0]) {
+                    return true;
+                }
+                return false;
+            });
+        }
+
     </script>
     <script>
         const btn = document.getElementById('search_bar');
