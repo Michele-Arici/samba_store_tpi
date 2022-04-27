@@ -442,6 +442,50 @@
             }
         }
 
+        function isAlreadyAdded(id) {
+            let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
+                let items = snapshot;
+
+                if (items.forEach((item) => {
+                    if (item.val() != "initialize") {
+                        if (item.val().track == id) {
+                            return true;
+                        }
+                    }
+                })) return true;
+                return false;
+            });
+
+            Promise.all([isInCart]).then((values) => {
+                if (values[0]) {
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        function isAlreadyBought(id) {
+            let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
+                let items = snapshot;
+
+                if (items.forEach((item) => {
+                    if (item.val() != "initialize") {
+                        if (item.val().track == id) {
+                            return true;
+                        }
+                    }
+                })) return true;
+                return false;
+            });
+
+            Promise.all([isAlreadyBought]).then((values) => {
+                if (values[0]) {
+                    return true;
+                }
+                return false;
+            });
+        }
+
         var album_result;
         albumsRef.once("value", (snap) => {
             let albums = snap.val();
@@ -603,52 +647,7 @@
             }
         });
 
-        function isAlreadyAdded(id) {
-            let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
-                let items = snapshot;
 
-                if (items.forEach((item) => {
-                    if (item.val() != "initialize") {
-                        if (item.val().track == id) {
-                            return true;
-                        }
-                    }
-                })) return true;
-                return false;
-            });
-
-            Promise.all([isInCart]).then((values) => {
-                if (values[0]) {
-                    return true;
-                }
-                return false;
-            });
-
-
-        }
-
-        function isAlreadyBought(id) {
-
-            let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
-                let items = snapshot;
-
-                if (items.forEach((item) => {
-                    if (item.val() != "initialize") {
-                        if (item.val().track == id) {
-                            return true;
-                        }
-                    }
-                })) return true;
-                return false;
-            });
-
-            Promise.all([isAlreadyBought]).then((values) => {
-                if (values[0]) {
-                    return true;
-                }
-                return false;
-            });
-        }
 
     </script>
     <script>

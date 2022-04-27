@@ -1,5 +1,7 @@
 NON FINITI:
 #Sistemare login/signout button your tracks
+#Query prime 3 carte browse
+#result sistemare arrivo alla traccia
 
 
 

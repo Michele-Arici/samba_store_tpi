@@ -60,7 +60,12 @@ cartRef.once("value", (snap) => {
 
                 let current_track_artist = current_artist_id.then(value => {
                     return firebase.database().ref("artists/" + value + "/name").once('value').then((snapshot) => {
+                        return snapshot.val();
+                    });
+                });
 
+                let current_track_artist_surname = current_artist_id.then(value => {
+                    return firebase.database().ref("artists/" + value + "/surname").once('value').then((snapshot) => {
                         return snapshot.val();
                     });
                 });
@@ -70,12 +75,13 @@ cartRef.once("value", (snap) => {
 
 
                 //"Decode the promises and set them into an array and then execute some code"
-                Promise.all([current_track_name, current_track_image, current_track_cost, current_track_artist]).then((values) => {
+                Promise.all([current_track_name, current_track_image, current_track_cost, current_track_artist, current_track_artist_surname]).then((values) => {
 
                     current_track_name = values[0];
                     current_track_image = values[1];
                     current_track_cost = values[2];
                     current_track_artist = values[3];
+                    current_track_artist_surname = values[4];
 
 
                     subtotal += current_track_cost;
@@ -87,7 +93,7 @@ cartRef.once("value", (snap) => {
                     </a>
                     <div class="col text-truncate">
                         <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
-                        <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist}</div>
+                        <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist} ${current_track_artist_surname}</div>
                     </div>
                     <div class="text-muted col-auto">
                         ${current_track_cost}$
