@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Samba's Store</title>
+    <title>Results</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
     <script type="module" src="./scripts/sambaSignInButton.js"></script>
@@ -104,33 +104,20 @@
         </aside>
         <div class="page-wrapper">
             <div class="container-xl">
-                
-                <div id="sign-up_button">
-                    <header class="navbar navbar-expand-md navbar-transparent d-print-none">
-                        <div class="container-xl">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbar-menu">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                            </h1>
-                            <div class="navbar-nav flex-row order-md-last">
-                                <div class="nav-item">
-                                    
-                                    <div class="btn-list">
-                                        <div id="profile_button_browse"></div>
-                                        
-                                        </div>
-                                    </div>
+                <header class="navbar navbar-expand-md navbar-transparent d-print-none">
+                    <div class="container-xl">
+                        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3"></h1>
+                        <div class="navbar-nav flex-row order-md-last">
+                            <div class="nav-item">
+                                <div id="profile_button_browse">
+
                                 </div>
                             </div>
                         </div>
-                    </header>
-                </div>
-
+                    </div>
+                </header>
+                
                 <div id="all_results">
-
-
 
                 </div>
             </div>
@@ -139,8 +126,7 @@
                     <div class="row text-center align-items-center flex-row-reverse">
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi"
-                                        target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                                <li class="list-inline-item"><a href="https://github.com/michele-arici/samba_store_tpi" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
@@ -159,32 +145,19 @@
     </div>
     <script>
         function secondsToFormat(totalSeconds) {
-
             const minutes = Math.floor(totalSeconds / 60);
-
             const seconds = totalSeconds % 60;
-
             function padTo2Digits(num) {
                 return num.toString().padStart(2, '0');
             }
-
             const result = `${minutes}:${padTo2Digits(seconds)}`;
-
             return result;
-        }
-
-        function openTrack(id) {
-
         }
     </script>
     <script>
         const queryString = window.location.search;
-
         const urlParams = new URLSearchParams(queryString);
-
         const searched = urlParams.get('searched')
-
-        console.log(searched);
 
         if (searched != null && searched != "") {
             const firebaseConfig = {
@@ -206,7 +179,157 @@
 
             var n_found = 0;
             
-            
+            var artistResults = [];
+            artistsRef.once("value", (snap) => {
+                let artists = snap.val();
+
+                artists.forEach((artist) => {
+                    if (artist !== artists) {
+                        var arn = artist.name;
+                        var arsn = artist.surname;
+                        var full_name = arn + " " + arsn;
+                        var full_name2 = arsn + " " + arn;
+                        if (arn.toLowerCase() == searched.toLowerCase() || arsn.toLowerCase().includes(searched.toLowerCase()) || arn.toLowerCase().includes(searched.toLowerCase()) || arsn.toLowerCase() == searched.toLowerCase() || full_name.toLowerCase() == searched.toLowerCase() || full_name2.toLowerCase() == searched.toLowerCase()) {
+                            artistResults.push(artist)
+                        }
+                    }
+                });
+
+                if (artistResults.length > 0) {
+                    var artist_title_div = `<div id="artists">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Artists
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="artists_row">
+
+                        </div>
+                    </div>`;
+                    $("#all_results").append(artist_title_div);
+
+                    for (let i = 0; i < artistResults.length; i++) {
+                        const element = artistResults[i];
+                        var artist_div = `<div class="col-2 text-center">
+                            <div class="mb-1">
+                                <a href="./artist.html?ID_AR=${element.ID_AR}">
+                                    <span class="avatar avatar-xl avatar-rounded" style="background-image: url(${element.image})"></span>
+                                </a>
+                            </div>
+                            <div class="card-title mb-1">${element.name} ${element.surname}</div>
+                        </div>`
+
+                        $("#artists_row").append(artist_div);
+                    }
+
+                    n_found++;
+                }
+            });
+
+            var albumResults = [];
+            var genereResults = [];
+            albumsRef.once("value", (snap) => {
+                let albums = snap.val();
+
+                albums.forEach((album) => {
+                    if (album !== undefined) {
+                        var an = album.name;
+                        var ag = album.genre;
+                        if (an.toLowerCase() == searched.toLowerCase() || an.toLowerCase().includes(searched.toLowerCase())) {
+                            albumResults.push(album)
+                        }
+                        if (ag.toLowerCase() == searched.toLowerCase() || ag.toLowerCase().includes(searched.toLowerCase())) {
+                            genereResults.push(album)
+                        }
+                    }
+                });
+
+                if (albumResults.length > 0) {
+                    var album_title_div = `<div id="albums">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Albums
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="albums_row">
+                            
+                        </div>
+                    </div>`;
+                    $("#all_results").append(album_title_div);
+
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < albumResults.length; i++) {
+                                    const album = albumResults[i];
+                                    if (album.ID_AR == element.ID_AR) {
+                                        var t_album_div = `<div class="col-2">
+                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;" src="${album.image}" class="card-img-top"></a>
+                                            <div class="d-flex align-items-center">
+                                                <div style="line-height: 15px;">
+                                                    <div><strong>${album.name}</strong></div>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong></a>
+                                                </div>
+                                            </div>
+                                        </div>`
+    
+                                        $("#albums_row").append(t_album_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
+
+                    n_found++;
+                }
+
+                if (genereResults.length > 0) {
+                    var album_title_div = `<div id="genere">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Genere
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="genere_row">
+                            
+                        </div>
+                    </div>`;
+                    $("#all_results").append(album_title_div);
+
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < genereResults.length; i++) {
+                                    const album = genereResults[i];
+                                    if (album.ID_AR == element.ID_AR) {
+                                        var t_album_div = `<div class="col-2">
+                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;" src="${album.image}" class="card-img-top"></a>
+                                            <div class="d-flex align-items-center">
+                                                <div style="line-height: 15px;">
+                                                    <div><strong>${album.name}</strong></div>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong></a>
+                                                </div>
+                                            </div>
+                                        </div>`
+    
+                                        $("#genere_row").append(t_album_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
+
+                    n_found++;
+                }
+            });
+
             let trackResults = [];
             tracksRef.once("value", function (snap) {
                 tracks = snap.val();
@@ -273,187 +396,24 @@
                     });
                     n_found++;
                 }
-            });
-
-
-            var albumResults = [];
-            var genereResults = [];
-            albumsRef.once("value", (snap) => {
-                let albums = snap.val();
-
-                albums.forEach((album) => {
-                    if (album !== undefined) {
-                        var an = album.name;
-                        var ag = album.genre;
-                        if (an.toLowerCase() == searched.toLowerCase() || an.toLowerCase().includes(searched.toLowerCase())) {
-                            albumResults.push(album)
-                        }
-                        if (ag.toLowerCase() == searched.toLowerCase() || ag.toLowerCase().includes(searched.toLowerCase())) {
-                            genereResults.push(album)
-                        }
-                    }
-                });
-
-                if (albumResults.length > 0) {
-                    var album_title_div = `<div id="albums">
-                        <hr style="margin: 2rem 0 0.2rem 0;">
-                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
-                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                                Albums
-                            </h2>
-                        </div>
-                        <div class="row row-cards" id="albums_row">
-                            
-                        </div>
-                    </div>`;
-                    $("#all_results").append(album_title_div);
-
-                    artistsRef.once("value", (snap) => {
-                        let artists = snap.val();
-    
-                        artists.forEach((element) => {
-                            if (element !== undefined) {
-                                for (let i = 0; i < albumResults.length; i++) {
-                                    const album = albumResults[i];
-                                    if (album.ID_AR == element.ID_AR) {
-                                        var t_album_div = `<div class="col-2">
-                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;"
-                                                    src="${album.image}"
-                                                    class="card-img-top"></a>
-                                            <div class="d-flex align-items-center">
-                                                <div style="line-height: 15px;">
-                                                    <div><strong>${album.name}</strong></div>
-                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>`
-    
-                                        $("#albums_row").append(t_album_div);
-                                    }
-                                }
-                            }
-                        });
-                    });
-
-                    n_found++;
-                }
-
-                if (genereResults.length > 0) {
-                    var album_title_div = `<div id="genere">
-                        <hr style="margin: 2rem 0 0.2rem 0;">
-                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
-                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                                Genere
-                            </h2>
-                        </div>
-                        <div class="row row-cards" id="genere_row">
-                            
-                        </div>
-                    </div>`;
-                    $("#all_results").append(album_title_div);
-
-                    artistsRef.once("value", (snap) => {
-                        let artists = snap.val();
-    
-                        artists.forEach((element) => {
-                            if (element !== undefined) {
-                                for (let i = 0; i < genereResults.length; i++) {
-                                    const album = genereResults[i];
-                                    if (album.ID_AR == element.ID_AR) {
-                                        var t_album_div = `<div class="col-2">
-                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;"
-                                                    src="${album.image}"
-                                                    class="card-img-top"></a>
-                                            <div class="d-flex align-items-center">
-                                                <div style="line-height: 15px;">
-                                                    <div><strong>${album.name}</strong></div>
-                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>`
-    
-                                        $("#genere_row").append(t_album_div);
-                                    }
-                                }
-                            }
-                        });
-                    });
-
-                    n_found++;
-                }
-            });
-
-
-            var artistResults = [];
-            artistsRef.once("value", (snap) => {
-                let artists = snap.val();
-
-                artists.forEach((artist) => {
-                    if (artist !== artists) {
-                        var arn = artist.name;
-                        var arsn = artist.surname;
-                        var full_name = arn + " " + arsn;
-                        var full_name2 = arsn + " " + arn;
-                        if (arn.toLowerCase() == searched.toLowerCase() || arsn.toLowerCase().includes(searched.toLowerCase()) || arn.toLowerCase().includes(searched.toLowerCase()) || arsn.toLowerCase() == searched.toLowerCase() || full_name.toLowerCase() == searched.toLowerCase() || full_name2.toLowerCase() == searched.toLowerCase()) {
-                            artistResults.push(artist)
-                        }
-                    }
-                });
-
-                if (artistResults.length > 0) {
-                    var artist_title_div = `<div id="artists">
-                        <div class="page-header d-print-none mb-1" style="margin: 0.2rem 0 0;">
-                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                                Artists
-                            </h2>
-                        </div>
-                        <div class="row row-cards" id="artists_row">
-
-                        </div>
-                    </div>`;
-                    $("#all_results").append(artist_title_div);
-
-                    for (let i = 0; i < artistResults.length; i++) {
-                        const element = artistResults[i];
-                        var artist_div = `<div class="col-2 text-center">
-                            <div class="mb-1">
-                                <a href="./artist.html?ID_AR=${element.ID_AR}">
-                                    <span class="avatar avatar-xl avatar-rounded"
-                                        style="background-image: url(${element.image})"></span>
-                                </a>
-                            </div>
-                            <div class="card-title mb-1">${element.name} ${element.surname}</div>
-                        </div>`
-
-                        $("#artists_row").append(artist_div);
-                    }
-
-                    n_found++;
-                }
 
                 if (n_found == 0) {
-                    const empty_div = `<div class="empty">
-                    <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
-                    </div>
-                    <p class="empty-title">No results found</p>
-                    <p class="empty-subtitle text-muted">
-                        Try adjusting your search or filter to find what you're looking for.
-                    </p>
+                    const empty_div = `<hr style="margin: 1rem 0 0.2rem 0;">
+                    <div class="empty">
+                        <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128"></div>
+                        <p class="empty-title">No results found</p>
+                        <p class="empty-subtitle text-muted">Try adjusting your search or filter to find what you're looking for.</p>
                     </div>`;
                     document.getElementById('all_results').innerHTML = empty_div;
                 }
             });
-
+            
         } else {
-            const empty_div = `<div class="empty">
-            <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128">
-            </div>
-            <p class="empty-title">No results found</p>
-            <p class="empty-subtitle text-muted">
-                Try adjusting your search or filter to find what you're looking for.
-            </p>
+            const empty_div = `<hr style="margin: 1rem 0 0.2rem 0;">
+            <div class="empty">
+                <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_work_together_h63l.svg" alt="" height="128"></div>
+                <p class="empty-title">No results found</p>
+                <p class="empty-subtitle text-muted">Try adjusting your search or filter to find what you're looking for.</p>
             </div>`;
             document.getElementById('all_results').innerHTML = empty_div;
         }

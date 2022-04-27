@@ -13,16 +13,16 @@ if (email != null) {
     //if you're logged in you'll see this
 
     let div = `<div class="nav-item dropdown">
-                <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png)"></span>
-                    <div class="d-none d-xl-block ps-2">
-                        <div><strong>${email}</strong></div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a class="dropdown-item" id="logout_dropdown">Logout</a>
-                </div>
-            </div>`;
+        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+            <span class="avatar avatar-sm" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png)"></span>
+            <div class="d-none d-xl-block ps-2">
+                <div><strong>${email}</strong></div>
+            </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+            <a class="dropdown-item" id="logout_dropdown">Logout</a>
+        </div>
+    </div>`;
     document.getElementById('profile_button_browse').innerHTML = div;
 
     document.getElementById('logout_dropdown').addEventListener('click', (e) => {
@@ -32,24 +32,24 @@ if (email != null) {
     });
 
     let cart = `<li class="nav-item">
-                <a class="nav-link" href="./cart.html">
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <circle cx="6" cy="19" r="2"></circle>
-                            <circle cx="17" cy="19" r="2"></circle>
-                            <path d="M17 17h-11v-14h-2"></path>
-                            <path d="M6 5l14 1l-1 7h-13"></path>
-                        </svg>
-                    </span>
-                    <span class="nav-link-title">
-                        Cart
-                    </span>
-                </a>
-            </li>`;
+        <a class="nav-link" href="./cart.html">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="6" cy="19" r="2"></circle>
+                    <circle cx="17" cy="19" r="2"></circle>
+                    <path d="M17 17h-11v-14h-2"></path>
+                    <path d="M6 5l14 1l-1 7h-13"></path>
+                </svg>
+            </span>
+            <span class="nav-link-title">
+                Cart
+            </span>
+        </a>
+    </li>`;
     document.getElementById('cart_li').innerHTML = cart;
 } else {
     let div = `<div class="btn-list">

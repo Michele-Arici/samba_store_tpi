@@ -1,7 +1,6 @@
 NON FINITI:
 #Sistemare login/signout button your tracks
 #Query prime 3 carte browse
-#result sistemare arrivo alla traccia
 
 
 
@@ -13,3 +12,4 @@ FINITI:
 #TODO assicurarsi che in browse siano importanti: "sambaAuth.js", "firebase-config.js" e "sambaCookies.js";
 #TODO in browse impostare l'id del checkbox di remember me a remember_login;
 #TODO quando fai il login se l'account è sbagliato dillo.
+#result sistemare arrivo alla traccia

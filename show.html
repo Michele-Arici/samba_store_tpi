@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Samba's Store</title>
+    <title id="page_title">Samba Store</title>
     <script src="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/js/tabler.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta9/dist/css/tabler.min.css">
     <style>
@@ -43,8 +43,7 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
                     <a href="./browse.html">
-                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;"
-                            class="navbar-brand-image">
+                        <img src="./images/samba_logo.png" width="1110" style="height: 5rem;" class="navbar-brand-image">
                     </a>
                 </h1>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -287,20 +286,22 @@
         }
 
         function SetBarTime() {
-            var current_time = Math.round(document.getElementById('music_player').currentTime);
-            var total_time = Math.round(document.getElementById('music_player').duration);
-
-            const current_minutes = Math.floor(current_time / 60);
-            const current_seconds = current_time % 60;
-            const current_result = `${padTo2Digits(current_minutes)}.${padTo2Digits(current_seconds)}`;
-
-            const total_minutes = Math.floor(total_time / 60);
-            const total_seconds = total_time % 60;
-            const total_result = `${padTo2Digits(total_minutes)}.${padTo2Digits(total_seconds)}`;
-
-            var width = Math.round((current_time / total_time) * 100);
-            document.getElementById('progress_bar').style.width = width + "%";
-            document.getElementById('player_current_time').innerHTML = `${current_result} : ${total_result}`;
+            if (document.getElementById('music_player_div').innerHTML != null) {
+                var current_time = Math.round(document.getElementById('music_player').currentTime);
+                var total_time = Math.round(document.getElementById('music_player').duration);
+    
+                const current_minutes = Math.floor(current_time / 60);
+                const current_seconds = current_time % 60;
+                const current_result = `${padTo2Digits(current_minutes)}.${padTo2Digits(current_seconds)}`;
+    
+                const total_minutes = Math.floor(total_time / 60);
+                const total_seconds = total_time % 60;
+                const total_result = `${padTo2Digits(total_minutes)}.${padTo2Digits(total_seconds)}`;
+    
+                var width = Math.round((current_time / total_time) * 100);
+                document.getElementById('progress_bar').style.width = width + "%";
+                document.getElementById('player_current_time').innerHTML = `${current_result} : ${total_result}`;
+            }
         }
 
         function PlayPause() {
@@ -401,7 +402,8 @@
 
         import { getDatabase, ref, get, set, child, update, remove, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"
         import { getCookie, setCookie, eraseCookie } from './scripts/sambaCookies.js';
-
+        
+        const user_id = getCookie('user_id');
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -419,6 +421,7 @@
             appId: "1:615866017038:web:73642d6681881c342be35f",
             measurementId: "G-ESNYSNZGTF",
         };
+
         firebase.initializeApp(firebaseConfig);
 
         let tracksRef = firebase.database().ref("tracks/");
@@ -433,57 +436,54 @@
             const user_id = getCookie('user_id');
 
             if (email != null && user_id != null) {
-
-
                 let json = { track: id[2] };
-                return firebase.database().ref("customers/" + getCookie('user_id') + "/cart/").push(json).key;
-
-
+                return firebase.database().ref("customers/" + user_id + "/cart/").push(json).key;
             }
         }
 
-        function isAlreadyAdded(id) {
-            let isInCart = firebase.database().ref("customers/" + user_id + "/cart/").once('value').then((snapshot) => {
-                let items = snapshot;
-
-                if (items.forEach((item) => {
-                    if (item.val() != "initialize") {
-                        if (item.val().track == id) {
-                            return true;
-                        }
+        let cart_tracks = [];
+        firebase.database().ref("customers/" + user_id + "/cart/").once("value", (snap) => {
+            let tracks = snap;
+            tracks.forEach((track) => {
+                if (track !== undefined) {
+                    console.log(track.val());
+                    if (track.val().initialize == null) {
+                        cart_tracks.push(track.val().track);
                     }
-                })) return true;
-                return false;
-            });
-
-            Promise.all([isInCart]).then((values) => {
-                if (values[0]) {
-                    return true;
                 }
-                return false;
             });
+        });
+
+        let bought_tracks = [];
+        firebase.database().ref("customers/" + user_id + "/owned_tracks/").once("value", (snap) => {
+            let tracks = snap;
+            tracks.forEach((track) => {
+                if (track !== undefined) {
+                    if (track.val().initialize == null) {
+                        bought_tracks.push(track.val().track);
+                    }
+                }
+            });
+        });
+        
+        function isAlreadyAdded(id) {
+            let added = false;
+            cart_tracks.forEach(id_t => {
+                if (id_t == id) {
+                    added = true;
+                }
+            });
+            return added;
         }
 
         function isAlreadyBought(id) {
-            let isAlreadyBought = firebase.database().ref("customers/" + user_id + "/owned_tracks/").once('value').then((snapshot) => {
-                let items = snapshot;
-
-                if (items.forEach((item) => {
-                    if (item.val() != "initialize") {
-                        if (item.val().track == id) {
-                            return true;
-                        }
-                    }
-                })) return true;
-                return false;
-            });
-
-            Promise.all([isAlreadyBought]).then((values) => {
-                if (values[0]) {
-                    return true;
+            let bought = false;
+            bought_tracks.forEach(id_t => {
+                if (id_t == id) {
+                    bought = true;
                 }
-                return false;
             });
+            return bought;
         }
 
         var album_result;
@@ -498,6 +498,7 @@
             });
 
             if (album_result != null) {
+                document.getElementById('page_title').innerHTML = "Samba Store | " + album_result.name;
                 var genere = album_result.genre
                 genere = genere.toUpperCase();
                 var release_date = album_result.release_date
@@ -587,7 +588,7 @@
                                     <td class=" w-1">
                                         ${secondsToFormat(element.duration)}
                                     </td>
-                                    <td class="w-1">
+                                    <td class="w-1" id="td_cart_button_${element.ID_T}">
                                         <a href="#" id="cart_button_${element.ID_T}" class="btn btn-outline-light w-100">${element.price}$</a>
                                     </td>
                                 </tr>`;
@@ -605,7 +606,7 @@
                                     <td class="text-muted w-1">
                                         ${secondsToFormat(element.duration)}
                                     </td>
-                                    <td class="w-1">
+                                    <td class="w-1" id="td_cart_button_${element.ID_T}">
                                         <a href="#" id="cart_button_${element.ID_T}" class="btn btn-outline-primary w-100">${element.price}$</a>
                                     </td>
                                 </tr>`;
@@ -616,9 +617,28 @@
 
                             $("#tbody_tracks").append(track_div);
 
-
                             var id = '#play_button_' + element.ID_T;
-                            var cart_id = '#cart_button_' + element.ID_T;
+                            var cart_button = '#cart_button_' + element.ID_T;
+                            var td_cart_button = 'td_cart_button_' + element.ID_T;
+                            
+                            if (isAlreadyAdded(element.ID_T)) {
+                                document.getElementById(td_cart_button).innerHTML = `<a class="btn btn-outline-success btn-icon w-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="6" cy="19" r="2"></circle>
+                                        <circle cx="17" cy="19" r="2"></circle>
+                                        <path d="M17 17h-11v-14h-2"></path>
+                                        <path d="M6 5l14 1l-1 7h-13"></path>
+                                    </svg>
+                                </a>`;
+                            } else if (isAlreadyBought(element.ID_T)) {
+                                document.getElementById(td_cart_button).innerHTML = `<a class="btn btn-outline-success btn-icon w-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M5 12l5 5l10 -10"></path>
+                                    </svg>
+                                </a>`;
+                            }
 
                             if (red_track_id == element.ID_T) {
                                 location.href = id;
@@ -628,7 +648,7 @@
                                 SetUrl(i);
                             });
 
-                            $(cart_id).click(function () {
+                            $(cart_button).click(function () {
                                 AddToCart(this.id);
                             });
                         }
