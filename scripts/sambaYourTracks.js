@@ -187,15 +187,21 @@ if (email != null) {
                     return snapshot.val();
                 });
 
-                let current_track_artist = current_artist_id.then(value => {
+                let current_track_artist_name = current_artist_id.then(value => {
                     return firebase.database().ref("artists/" + value + "/name").once('value').then((snapshot) => {
 
                         return snapshot.val();
                     });
                 });
 
+                let current_track_artist_surname = current_artist_id.then(value => {
+                    return firebase.database().ref("artists/" + value + "/surname").once('value').then((snapshot) => {
 
-                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist, current_album_id, current_artist_id]).then((values) => {
+                        return snapshot.val();
+                    });
+                });
+
+                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist_name, current_album_id, current_artist_id, current_track_artist_surname]).then((values) => {
 
                     current_track_name = values[0];
                     current_track_image = values[1];
@@ -205,9 +211,10 @@ if (email != null) {
                         current_track_duration = Math.floor(values[2] / 60) + ":0" + (values[2] % 60);
                     } else current_track_duration = Math.floor(values[2] / 60) + ":" + current_track_seconds;
 
-                    current_track_artist = values[3];
+                    current_track_artist_name = values[3];
                     current_album_id = values[4];
                     current_artist_id = values[5];
+                    current_track_artist_surname = values[6];
 
                     let current_track_owned_track = `<div class="col-3">
                             <div class="row g-3 align-items-center">
@@ -216,7 +223,7 @@ if (email != null) {
                                 </a>
                                 <div class="col text-truncate">
                                     <a href="./show.html?ID_A=${current_album_id}&ID_T=${item.val()['track']}" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
-                                    <a href="./artist.html?ID_AR=${current_artist_id}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist}
+                                    <a href="./artist.html?ID_AR=${current_artist_id}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist_name} ${current_track_artist_surname}
                                     </a>
                                 </div>
                                 <div class="text-muted col-auto">

@@ -437,8 +437,9 @@
 
             if (email != null && user_id != null) {
                 let json = { track: id[2] };
-                return firebase.database().ref("customers/" + user_id + "/cart/").push(json).key;
+                firebase.database().ref("customers/" + user_id + "/cart/").push(json).key;
             }
+            return window.location.reload();
         }
 
         let cart_tracks = [];

@@ -181,7 +181,11 @@ buyTracks.addEventListener('click', (e) => {
         });
 
     });
-    window.location.replace("./successful_purchase.html");
+
+    //Lascio tempo al client di inviare la richiesta prima del redirect. 
+    setTimeout(function () {
+        window.location.replace("./successful_purchase.html");
+    }, 500);
 });
 
 ///buy things////
