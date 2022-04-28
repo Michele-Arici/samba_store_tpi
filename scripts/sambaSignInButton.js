@@ -25,12 +25,8 @@ if (email != null) {
     </div>`;
     document.getElementById('profile_button_browse').innerHTML = div;
 
-    document.getElementById('logout_dropdown').addEventListener('click', (e) => {
-        e.preventDefault();
-
-        logout()
-    });
-
+    
+    
     let cart = `<li class="nav-item">
         <a class="nav-link" href="./cart.html">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -51,20 +47,28 @@ if (email != null) {
         </a>
     </li>`;
     document.getElementById('cart_li').innerHTML = cart;
+
+    $( document ).ready(function() {
+        document.getElementById('logout_dropdown').addEventListener('click', (e) => {
+            e.preventDefault();
+    
+            logout()
+        });
+    });
 } else {
     let div = `<div class="btn-list">
-                <a href="#" class="btn btn-primary d-none d-sm-inline-block"
-                    data-bs-toggle="modal" data-bs-target="#signInModal">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-user" width="24" height="24"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                    </svg> Sign-in
-                </a>
-            </div>`;
+        <a href="#" class="btn btn-primary d-none d-sm-inline-block"
+            data-bs-toggle="modal" data-bs-target="#signInModal">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-user" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+            </svg> Sign-in
+        </a>
+    </div>`;
     document.getElementById('profile_button_browse').innerHTML = div;
 
     let modals = `<!-- SIGNUP MODAL -->

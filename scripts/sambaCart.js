@@ -46,6 +46,13 @@ function DisplayCart() {
                         return snapshot.val();
                     });
 
+                    let current_track_album_id = firebase.database().ref("tracks/" + item.val().track + "/ID_A").once('value').then((snapshot) => {
+                        return snapshot.val();
+                    });
+
+                    let current_track_id = firebase.database().ref("tracks/" + item.val().track + "/ID_T").once('value').then((snapshot) => {
+                        return snapshot.val();
+                    });
 
                     let current_artist_id = firebase.database().ref("tracks/" + item.val().track + "/ID_AR").once('value').then((snapshot) => {
                         return snapshot.val();
@@ -64,12 +71,15 @@ function DisplayCart() {
                     });
 
                     //"Decode the promises and set them into an array and then execute some code"
-                    Promise.all([current_track_name, current_track_image, current_track_cost, current_track_artist, current_track_artist_surname]).then((values) => {
+                    Promise.all([current_track_name, current_track_image, current_track_cost, current_track_artist, current_track_artist_surname, current_track_album_id, current_track_id, current_artist_id]).then((values) => {
                         current_track_name = values[0];
                         current_track_image = values[1];
                         current_track_cost = values[2];
                         current_track_artist = values[3];
                         current_track_artist_surname = values[4];
+                        current_track_album_id = values[5];
+                        current_track_id = values[6];
+                        current_artist_id = values[7];
 
                         subtotal += current_track_cost;
 
@@ -79,8 +89,8 @@ function DisplayCart() {
                                     <span class="avatar" style="background-image: url(${current_track_image})"></span>
                                 </a>
                                 <div class="col text-truncate">
-                                    <a href="#" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
-                                    <div class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist} ${current_track_artist_surname}</div>
+                                    <a href="./show.html?ID_A=${current_track_album_id}&ID_T=${current_track_id}" class="text-reset d-block text-truncate" style="font-weight: 500; line-height: 1;">${current_track_name}</a>
+                                    <a href="./artist.html?ID_AR=${current_artist_id}" class="text-muted text-truncate mt-n1" style="font-weight: 400;">${current_track_artist} ${current_track_artist_surname}</a>
                                 </div>
                                 <div class="text-muted col-auto">
                                     ${current_track_cost}$

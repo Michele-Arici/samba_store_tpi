@@ -190,24 +190,20 @@ if (email != null) {
 
                     let current_track_being_album = `<div class="col-2">
                             <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="${current_track_album_image}" class="card-img-top"></a>
+                                <a href="./show.html?ID_A=${current_album_id}" class="d-block mb-1"><img style="border-radius: 5px;" src="${current_track_album_image}" class="card-img-top"></a>
                                 <div class="d-flex align-items-center">
                                     <div style="line-height: 15px;">
                                         <div><strong>${current_track_album_name}</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>${current_track_artist_name} ${current_track_artist_surname}</strong></div>
+                                        <a href="./artist.html?ID_AR=${current_artist_id}" class="text-muted" style="font-size: 12px;"><strong>${current_track_artist_name} ${current_track_artist_surname}</strong></a>
                                     </div>
                                 </div>
                             </div>
                         </div>`;
 
-                    if (!document.getElementById("album").textContent.includes(current_track_album_name))
+                    if (!document.getElementById("album").textContent.includes(current_track_album_name)) {
                         $("#album").append(current_track_being_album);
-
-
+                    }
                 });
-
-
-
             }
         });
 
@@ -215,31 +211,26 @@ if (email != null) {
 
 } else {
     var log_in = `<div class="page page-center">
-                <div class="container-tight py-4">
-                    <div class="empty">
-                        <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg"
-                                alt="" height="128">
-                        </div>
-                        <p class="empty-title">You are currently not logged</p>
-                        <p class="empty-subtitle text-muted">
-                            In order to access this page you have to make the sign-in
-                        </p>
-                        <div class="empty-action">
-                            <a href="./browse.html" class="btn btn-primary">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/arrow-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <line x1="5" y1="12" x2="11" y2="18"></line>
-                                    <line x1="5" y1="12" x2="11" y2="6"></line>
-                                </svg>
-                                Take me to sign-in
-                            </a>
-                        </div>
-                    </div>
+        <div class="container-tight py-4">
+            <div class="empty">
+                <div class="empty-img"><img src="https://preview.tabler.io/static/illustrations/undraw_quitting_time_dm8t.svg" alt="" height="128"></div>
+                <p class="empty-title">You are currently not logged</p>
+                <p class="empty-subtitle text-muted">
+                    In order to access this page you have to make the sign-in
+                </p>
+                <div class="empty-action">
+                    <a href="./browse.html" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signInModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <desc>Download more icon variants from https://tabler-icons.io/i/user</desc>
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                        </svg>
+                        Take me to sign-in
+                    </a>
                 </div>
-            </div>`;
+            </div>
+        </div>
+    </div>`;
     document.getElementById('sign-in_div').innerHTML = log_in;
 }
