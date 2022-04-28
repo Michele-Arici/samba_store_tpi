@@ -65,7 +65,18 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
+
 <body class="layout-fluid theme-light">
+    <script>
+        var apiurl = 'http://api.ipinfodb.com/v3/ip-city';
+        $.getJSON(apiurl+'/format=json&callback=?',
+            function(data){
+                console.log(data.regionName + ", " + data.countryName);
+                
+                //$("h3#location").html();
+            }
+        );
+    </script>
     <div class="page">
         <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
             <div class="container-fluid">
@@ -182,41 +193,42 @@
                         <div class="col-4">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <div class="subheader">PLAYLIST</div>
+                                    <div class="subheader">ITALY</div>
                                     <h3 class="card-title" style="margin-bottom: 0;">TOP 50
                                         ITALY</h3>
-                                    <div class="text-muted mb-2"><strong>Pop
-                                            - rap - house</strong></div>
+                                    <div class="text-muted mb-2"><strong>Pop - rap - house</strong></div>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive
-                                    img-responsive-21x9"
-                                style="border-radius: 7px; background-image:
-                                    url(https://charts-images.scdn.co/assets/locale_en/regional/daily/region_it_large.jpg)">
-                            </div>
+                            <a href="">
+                                <div class="card-img-bottom img-responsive
+                                        img-responsive-21x9"
+                                    style="border-radius: 7px; background-image:
+                                        url(https://charts-images.scdn.co/assets/locale_en/regional/daily/region_it_large.jpg)">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-4">
                             <div class="d-flex align-items-center">
                                 <div>
                                     <div class="subheader">NEW ALBUM</div>
-                                    <h3 class="card-title" style="margin-bottom: 0;">SIRIO</h3>
-                                    <div class="text-muted mb-2"><strong>Lazza</strong></div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">SCORPION</h3>
+                                    <a href="./artist.html?ID_AR=3">
+                                        <div class="text-muted mb-2"><strong>Drake</strong></div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive
-                                    img-responsive-21x9"
-                                style="border-radius: 7px; background-image:
-                                    url(https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg)">
-                            </div>
+                            <a href="./show.html?ID_A=3">
+                                <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg)"></div>
+                            </a>
                         </div>
                         <div class="col-4">
                             <div class="d-flex align-items-center">
                                 <div>
                                     <div class="subheader">NEW TOUR</div>
-                                    <h3 class="card-title" style="margin-bottom: 0;">Drake new
-                                        tour</h3>
-                                    <div class="text-muted mb-2"><strong>Travis
-                                            Scott</strong></div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">Drake new tour</h3>
+                                    <a href="./artist.html?ID_AR=3">
+                                        <div class="text-muted mb-2"><strong>Drake</strong></div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-img-bottom img-responsive

@@ -229,6 +229,7 @@
 
             var albumResults = [];
             var genereResults = [];
+            var stateResults = [];
             albumsRef.once("value", (snap) => {
                 let albums = snap.val();
 
@@ -236,11 +237,17 @@
                     if (album !== undefined) {
                         var an = album.name;
                         var ag = album.genre;
+                        var as = album.state;
                         if (an.toLowerCase() == searched.toLowerCase() || an.toLowerCase().includes(searched.toLowerCase())) {
                             albumResults.push(album)
                         }
                         if (ag.toLowerCase() == searched.toLowerCase() || ag.toLowerCase().includes(searched.toLowerCase())) {
                             genereResults.push(album)
+                        }
+                        if (as != null) {    
+                            if (as.toLowerCase() == searched.toLowerCase() || as.toLowerCase().includes(searched.toLowerCase())) {
+                                stateResults.push(album)
+                            }
                         }
                     }
                 });
@@ -320,6 +327,48 @@
                                         </div>`
     
                                         $("#genere_row").append(t_album_div);
+                                    }
+                                }
+                            }
+                        });
+                    });
+
+                    n_found++;
+                }
+
+                if (stateResults.length > 0) {
+                    var album_title_div = `<div id="genere">
+                        <hr style="margin: 2rem 0 0.2rem 0;">
+                        <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
+                            <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
+                                Country
+                            </h2>
+                        </div>
+                        <div class="row row-cards" id="state_row">
+                            
+                        </div>
+                    </div>`;
+                    $("#all_results").append(album_title_div);
+
+                    artistsRef.once("value", (snap) => {
+                        let artists = snap.val();
+    
+                        artists.forEach((element) => {
+                            if (element !== undefined) {
+                                for (let i = 0; i < stateResults.length; i++) {
+                                    const album = stateResults[i];
+                                    if (album.ID_AR == element.ID_AR) {
+                                        var t_album_div = `<div class="col-2">
+                                            <a href="./show.html?ID_A=${album.ID_A}" class="d-block mb-1"><img style="border-radius: 5px;" src="${album.image}" class="card-img-top"></a>
+                                            <div class="d-flex align-items-center">
+                                                <div style="line-height: 15px;">
+                                                    <div><strong>${album.name}</strong></div>
+                                                    <a href="./artist.html?ID_AR=${element.ID_AR}" class="text-muted" style="font-size: 12px;"><strong>${element.name} ${element.surname}</strong></a>
+                                                </div>
+                                            </div>
+                                        </div>`
+    
+                                        $("#state_row").append(t_album_div);
                                     }
                                 }
                             }
