@@ -1,4 +1,4 @@
-import { getCookie, setCookie, eraseCookie } from './sambaCookies.js';
+import { getCookie, setCookie, eraseCookie } from '/samba_store_tpi/scripts/sambaCookies.js';
 // import { ref, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
 import { firebaseConfig } from "/samba_store_tpi/scripts/firebase-config.js";
 
