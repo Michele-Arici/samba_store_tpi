@@ -1,6 +1,6 @@
-import { getCookie } from "/samba_store_tpi/sambaCookies.js";
+import { getCookie } from "/samba_store_tpi/scripts/sambaCookies.js";
 // import { ref, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
-import { firebaseConfig } from "/samba_store_tpi/firebase-config.js";
+import { firebaseConfig } from "/samba_store_tpi/scripts/firebase-config.js";
 import { ref, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"
 
 firebase.initializeApp(firebaseConfig);

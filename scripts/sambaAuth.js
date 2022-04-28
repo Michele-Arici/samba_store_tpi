@@ -1,7 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
 import { ref, push } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"
 
-//import { addCustomer } from '/scripts/sambaDB.js';
 import { auth } from '/samba_store_tpi/scripts/firebase-config.js';
 import { getCookie, setCookie, eraseCookie } from '/samba_store_tpi/scripts/sambaCookies.js';
 
