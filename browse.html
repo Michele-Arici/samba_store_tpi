@@ -67,16 +67,7 @@
 
 
 <body class="layout-fluid theme-light">
-    <script>
-        var apiurl = 'http://api.ipinfodb.com/v3/ip-city';
-        $.getJSON(apiurl+'/format=json&callback=?',
-            function(data){
-                console.log(data.regionName + ", " + data.countryName);
-                
-                //$("h3#location").html();
-            }
-        );
-    </script>
+    
     <div class="page">
         <aside class="navbar navbar-vertical navbar-expand-lg navbar-gray">
             <div class="container-fluid">
@@ -179,8 +170,7 @@
                     <div class="page-header d-print-none">
                         <div class="row g-2 align-items-center">
                             <div class="col">
-                                <h1 class="page-title" style="font-size:
-                                        34px; font-weight: 700;">
+                                <h1 class="page-title" style="font-size: 34px; font-weight: 700;">
                                     Browse
                                 </h1>
                             </div>
@@ -193,18 +183,14 @@
                         <div class="col-4">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <div class="subheader">ITALY</div>
-                                    <h3 class="card-title" style="margin-bottom: 0;">TOP 50
-                                        ITALY</h3>
-                                    <div class="text-muted mb-2"><strong>Pop - rap - house</strong></div>
+                                    <div class="subheader">PLAYLIST</div>
+                                    <h3 class="card-title" style="margin-bottom: 0;">Best of your state</h3>
+                                    <div class="text-muted mb-2"><strong id="boyc_text"></strong></div>
                                 </div>
                             </div>
-                            <a href="">
-                                <div class="card-img-bottom img-responsive
-                                        img-responsive-21x9"
-                                    style="border-radius: 7px; background-image:
-                                        url(https://charts-images.scdn.co/assets/locale_en/regional/daily/region_it_large.jpg)">
-                                </div>
+                            <a href="" id="boyc_href">
+                                <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: 
+                                    url(./images/best_albums.jpg)"></div>
                             </a>
                         </div>
                         <div class="col-4">
@@ -218,7 +204,7 @@
                                 </div>
                             </div>
                             <a href="./show.html?ID_A=3">
-                                <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg)"></div>
+                                <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/1f/37/43/1f374304-2e04-2be3-53ea-41dd6f0b6fb8/00602567892410.rgb.jpg/300x300bb.webp)"></div>
                             </a>
                         </div>
                         <div class="col-4">
@@ -231,11 +217,10 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card-img-bottom img-responsive
-                                    img-responsive-21x9"
-                                style="border-radius: 7px; background-image:
-                                    url(https://cdn.blogo.it/8FYYbBnw5N36TRNzGPBLOjZ83uM=/1200x800/smart/https://www.blogo.it/app/uploads/sites/5/2016/10/drake-tour.png)">
-                            </div>
+                            <a href="https://www.youtube.com/watch?v=CgQwNEzpHeE" target="_blank">
+                                <div class="card-img-bottom img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://cdn.blogo.it/8FYYbBnw5N36TRNzGPBLOjZ83uM=/1200x800/smart/https://www.blogo.it/app/uploads/sites/5/2016/10/drake-tour.png)">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -264,7 +249,7 @@
                     <div class="row row-cards" id="music_mood_row">
                         <div class="col-2">
                             <a href="#" id="search_mood_hiphop" class="d-block mb-1">
-                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is1-ssl.mzstatic.com/image/thumb/Video124/v4/f7/97/dc/f797dcb0-90b2-cf6b-57d3-c4e5d7151725/Job97b656a7-303e-426d-84f6-1df1ea68c789-108344615-PreviewImage_preview_image_nonvideo_sdr-Time1608589210442.png/610x610cc-60.jpg)"></div>
+                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://is1-ssl.mzstatic.com/image/thumb/Video124/v4/f7/97/dc/f797dcb0-90b2-cf6b-57d3-c4e5d7151725/Job97b656a7-303e-426d-84f6-1df1ea68c789-108344615-PreviewImage_preview_image_nonvideo_sdr-Time1608589210442.png/610x610cc-60.jpg); filter: grayscale(100%);"></div>
                             </a>
                             <div class="d-flex align-items-center">
                                 <div style="line-height: 15px;">
@@ -274,11 +259,7 @@
                         </div>
                         <div class="col-2">
                             <a href="#" id="search_mood_pop" class="d-block mb-1">
-                                <div class="img-responsive
-                                        img-responsive-21x9"
-                                    style="border-radius: 7px;
-                                        background-image:
-                                        url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
+                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://cdn.skuola.net/news_foto/2018/pop-music.jpg); filter: grayscale(100%);">
                                 </div>
                             </a>
                             <div class="d-flex align-items-center">
@@ -289,11 +270,7 @@
                         </div>
                         <div class="col-2">
                             <a href="#" id="search_mood_house" class="d-block mb-1">
-                                <div class="img-responsive
-                                        img-responsive-21x9"
-                                    style="border-radius: 7px;
-                                        background-image:
-                                        url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
+                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
                                 </div>
                             </a>
                             <div class="d-flex align-items-center">
@@ -304,11 +281,7 @@
                         </div>
                         <div class="col-2">
                             <a href="#" id="search_mood_rap" class="d-block mb-1">
-                                <div class="img-responsive
-                                        img-responsive-21x9"
-                                    style="border-radius: 7px;
-                                        background-image:
-                                        url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
+                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://scenenoise.com/Content/Articles/Big_image/637309195245437015_rap-anghami-main.png)">
                                 </div>
                             </a>
                             <div class="d-flex align-items-center">
@@ -321,9 +294,7 @@
                             <a href="#" id="search_mood_jazz" class="d-block mb-1">
                                 <div class="img-responsive
                                         img-responsive-21x9"
-                                    style="border-radius: 7px;
-                                        background-image:
-                                        url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
+                                    style="border-radius: 7px; background-image: url(data:image/jpeg;base64,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); filter: grayscale(100%);">
                                 </div>
                             </a>
                             <div class="d-flex align-items-center">
@@ -334,11 +305,7 @@
                         </div>
                         <div class="col-2">
                             <a href="#" id="search_mood_dance" class="d-block mb-1">
-                                <div class="img-responsive
-                                        img-responsive-21x9"
-                                    style="border-radius: 7px;
-                                        background-image:
-                                        url(https://rukminim2.flixcart.com/image/416/416/jqmnv680/poster/f/3/w/medium-pwl-mixer-dj-black-white-audio-panel-wall-poster-13-19-original-imaeh8nhdggnfbzk.jpeg?q=70)">
+                                <div class="img-responsive img-responsive-21x9" style="border-radius: 7px; background-image: url(https://cdn.skuola.net/w1200h686/news_foto/2013/dance-music-party.jpg); filter: grayscale(100%);">
                                 </div>
                             </a>
                             <div class="d-flex align-items-center">
@@ -362,26 +329,6 @@
 
                     </div>
                 </div>
-
-                <!--
-                <div id="video">
-                    <hr style="margin: 2rem 0 0.2rem 0;">
-                    <div class="page-header d-print-none" style="margin: 0.2rem 0 0;">
-                        <h2 class="page-title" style="font-size: 17px; font-weight: 700;">
-                            Drake new tour
-                        </h2>
-                    </div>
-                    <div class="row row-cards">
-                        <div class="col-12">
-                            <div style="text-align:center;">
-                                <iframe width="1000" height="400"
-                                    src="https://www.youtube.com/embed/CgQwNEzpHeE?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&loop=1&autoplay=1"
-                                    allow="autoplay" frameborder="0"> </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
             </div>
             <footer class="footer footer-transparent d-print-none">
                 <div class="container-xl">
@@ -410,7 +357,18 @@
     <div id="modals_sign_div">
 
     </div>
-
+    <script>
+        var computer_country = "";
+        fetch('https://api.ipregistry.co/?key=yw3zlsch5wqx94n9')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (payload) {
+            computer_country = payload.location.country.name;
+            document.getElementById('boyc_text').innerHTML = computer_country;
+            document.getElementById('boyc_href').href = './results.html?searched='+computer_country;
+        });
+    </script>
 </body>
 
 
