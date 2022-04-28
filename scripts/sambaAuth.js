@@ -81,7 +81,6 @@ if (email == null) {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log("registrazione ok");
 
                     //QUERY PER COLLEGARE L'ACCOUNT!!
                     //addCustomer(user.uid, email, password, phone_number, city, firstName, surname);
@@ -97,7 +96,6 @@ if (email == null) {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    console.log(errorCode);
 
                     if (errorCode == 'auth/email-already-in-use') {
                         document.getElementById('email_invalid_feed').innerHTML = "Email already in use. Use another one";
@@ -167,7 +165,6 @@ if (email == null) {
                     if (errorCode == 'auth/wrong-password' || errorCode == 'auth/user-not-found') {
                         document.getElementById('signin_check_invalid_feed').innerHTML = "Incorrect email or password";
                     }
-                    console.log(errorCode);
                 });
         }
     });

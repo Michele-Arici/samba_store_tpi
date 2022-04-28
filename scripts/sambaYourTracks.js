@@ -11,7 +11,6 @@ function logout() {
 }
 
 var email = getCookie('user_email');
-console.log(email);
 
 if (email != null) {
     var div = `<div class="nav-item dropdown">
