@@ -1,4 +1,4 @@
-import { getCookie, setCookie, eraseCookie } from './sambaCookies.js';
+import { getCookie, setCookie, eraseCookie } from '/samba_store_tpi/scripts/sambaCookies.js';
 
 function logout() {
     eraseCookie("user_email");
@@ -25,8 +25,8 @@ if (email != null) {
     </div>`;
     document.getElementById('profile_button_browse').innerHTML = div;
 
-    
-    
+
+
     let cart = `<li class="nav-item">
         <a class="nav-link" href="./cart.html">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -48,10 +48,10 @@ if (email != null) {
     </li>`;
     document.getElementById('cart_li').innerHTML = cart;
 
-    $( document ).ready(function() {
+    $(document).ready(function () {
         document.getElementById('logout_dropdown').addEventListener('click', (e) => {
             e.preventDefault();
-    
+
             logout()
         });
     });

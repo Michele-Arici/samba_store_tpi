@@ -1,4 +1,4 @@
-import { getCookie, setCookie, eraseCookie } from './sambaCookies.js';
+import { getCookie, setCookie, eraseCookie } from '/samba_store_tpi/scripts/sambaCookies.js';
 
 function logout() {
     eraseCookie("user_email");
@@ -102,7 +102,7 @@ albumsRef.once("value", (snap) => {
         albums = albums.filter((a) => a.ID_A != max.ID_A);
         latest.push(max);
     }
-    
+
 
     if (latest.length > 0) {
         artistsRef.once("value", (snap) => {
@@ -124,7 +124,7 @@ albumsRef.once("value", (snap) => {
                                     </div>
                                 </div>
                             </div>`
-        
+
                             $("#new_releases_row").append(t_album_div);
                         }
                     }
@@ -179,7 +179,7 @@ tracksRef.once("value", function (snap) {
                     const track = randList[i];
 
                     if (track.ID_AR == element.ID_AR) {
-                        
+
                         var t_track_div = `<div class="col-3">
                             <div class="row g-3 align-items-center">
                                 <a class="col-auto">
