@@ -85,73 +85,9 @@ if (email != null) {
                         </h2>
                     </div>
 
-                    <div class="row row-cards">
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/03/81/15/038115b0-e0a9-04ab-0e6b-3d1773c10621/22UMGIM35661.rgb.jpg/270x270bb-60.jpg" class="card-img-top"></a>
-                                <div class="d-flex align-items-center">
-                                    <div style="line-height: 15px;">
-                                        <div><strong>SIRIO</strong></div>
-                                        <div class="text-muted" style="font-size: 12px;"><strong>Lazza</strong></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row row-cards" id ="album">
+                        
+
                     </div>
                 </div>`;
     document.getElementById('sign-in_div').innerHTML = log_in;
@@ -182,9 +118,25 @@ if (email != null) {
                     return snapshot.val();
                 });
 
+                let current_track_album_id = firebase.database().ref("tracks/" + item.val().track + "/ID_A").once('value').then((snapshot) => {
+                    return snapshot.val();
+                });
+
 
                 let current_artist_id = firebase.database().ref("tracks/" + item.val().track + "/ID_AR").once('value').then((snapshot) => {
                     return snapshot.val();
+                });
+
+                let current_track_album_name = current_track_album_id.then(value => {
+                    return firebase.database().ref("albums/" + value + "/name").once('value').then((snapshot) => {
+                        return snapshot.val();
+                    });
+                });
+
+                let current_track_album_image = current_track_album_id.then(value => {
+                    return firebase.database().ref("albums/" + value + "/image").once('value').then((snapshot) => {
+                        return snapshot.val();
+                    });
                 });
 
                 let current_track_artist_name = current_artist_id.then(value => {
@@ -201,7 +153,7 @@ if (email != null) {
                     });
                 });
 
-                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist_name, current_album_id, current_artist_id, current_track_artist_surname]).then((values) => {
+                Promise.all([current_track_name, current_track_image, current_track_duration, current_track_artist_name, current_album_id, current_artist_id, current_track_artist_surname, current_track_album_name, current_track_album_image]).then((values) => {
 
                     current_track_name = values[0];
                     current_track_image = values[1];
@@ -215,6 +167,8 @@ if (email != null) {
                     current_album_id = values[4];
                     current_artist_id = values[5];
                     current_track_artist_surname = values[6];
+                    current_track_album_name = values[7];
+                    current_track_album_image = values[8];
 
                     let current_track_owned_track = `<div class="col-3">
                             <div class="row g-3 align-items-center">
@@ -234,7 +188,27 @@ if (email != null) {
                         </div>`;
 
                     $("#tracks").append(current_track_owned_track);
+
+                    let current_track_being_album = `<div class="col-2">
+                            <div>
+                                <a href="#" class="d-block mb-1"><img style="border-radius: 5px;" src="${current_track_album_image}" class="card-img-top"></a>
+                                <div class="d-flex align-items-center">
+                                    <div style="line-height: 15px;">
+                                        <div><strong>${current_track_album_name}</strong></div>
+                                        <div class="text-muted" style="font-size: 12px;"><strong>${current_track_artist_name} ${current_track_artist_surname}</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+
+                    if (!document.getElementById("album").textContent.includes(current_track_album_name))
+                        $("#album").append(current_track_being_album);
+
+
                 });
+
+
+
             }
         });
 

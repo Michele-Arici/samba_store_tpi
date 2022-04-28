@@ -155,7 +155,7 @@ const buyTracks = document.getElementById('buy_tracks');
 
 buyTracks.addEventListener('click', (e) => {
 
-    
+
     let cartRef = firebase.database().ref("customers/" + getCookie('user_id') + "/cart/");
 
     cartRef.once("value", (snap) => {
@@ -166,11 +166,21 @@ buyTracks.addEventListener('click', (e) => {
                 if (element.key != "initialize") {
                     let json = { track: element.val()['track'] };
                     firebase.database().ref("customers/" + getCookie('user_id') + "/owned_tracks/").push(json).key;
+
+                    var today = new Date();
+
+                    json = {
+                        Date: today.toLocaleDateString(),
+                        ID_C: getCookie('user_id'),
+                        ID_T: element.val()['track']
+                    };
+
+                    firebase.database().ref("order/").push(json).key;
                     firebase.database().ref("customers/" + getCookie('user_id') + "/cart/" + element.key).remove();
-                    
-                    let json2 = { cart: { initialize: "" }};
+
+                    json = { cart: { initialize: "" } };
                     let cartRef = ref(firebase.database(), "customers/" + getCookie('user_id'));
-                    push(cartRef, json2);
+                    push(cartRef, json);
                 }
             });
         } else {
@@ -179,13 +189,13 @@ buyTracks.addEventListener('click', (e) => {
 
 
     });
-    
+
     //Lascio tempo al client di inviare la richiesta prima del redirect. 
     setTimeout(function () {
         document.getElementById('show_tracks').innerHTML = '';
         document.getElementById('show_total').innerHTML = '';
         document.getElementById('modal_success_text').innerHTML = `Your payment of ${cart_total}$ has been successfully submitted. If you have any problem contact us.`;
-        
+
         DisplayCart();
         $('#modal-success').modal('show');
 
